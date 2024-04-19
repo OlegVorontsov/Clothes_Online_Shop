@@ -12,21 +12,9 @@ namespace Clothes_Online_Shop.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ProductRepository repository;
-
-        public HomeController()
+        public IActionResult Index()
         {
-            repository = new ProductRepository();
-        }
-
-        public string Index()
-        {
-            string line = string.Empty;
-            foreach (var product in repository.GetAll())
-            {
-                line += product + "\n\n";
-            }
-            return line;
+            return View();
         }
 
         public IActionResult Privacy()

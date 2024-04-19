@@ -15,14 +15,21 @@ namespace Clothes_Online_Shop.Controllers
         {
             repository = new ProductRepository();
         }
-        public string Index(int id)
+
+        public IActionResult Catalog()
+        {
+            return View(repository.GetAll());
+        }
+
+        public IActionResult Index(int id)
         {
             var product = repository.TryGetById(id);
             if (product == null)
             {
-                return $"Продукта с {id} не существует";
+                object result = $"Товар с id {id} отсутствует";
+                return View("Error", result);
             }
-            return product.ToString();
+            return View(product);
         }
     }
 }

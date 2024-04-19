@@ -1,0 +1,21 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-3 card shadow">
+        <div class="card-body">
+            <img class="card-img-top" src="~/img/hudi.jpg" />
+            <a href="/product/index/@Model.Id">
+                <h5>@Model.Name</h5>
+                <h5>@Model.Cost руб.</h5>
+                <p>@Model.Description</p>
+            </a>
+            <a class="btn btn-dark" href="#" role="button">Добавить в корзину</a>
+        </div>
+    </div>
+</div>
+
+<a href="/product/catalog">В каталог</a>

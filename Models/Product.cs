@@ -13,7 +13,7 @@
         public string Fabric { get; }
         public string Brand { get; }
         public string Country { get; }
-        public string Description { get; }
+        public string Description { get;}
         public bool Like { get; }
         public Product(string name,
                        string item,
