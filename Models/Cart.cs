@@ -9,7 +9,7 @@ namespace Clothes_Online_Shop.Models
         public Guid Id { get; set; }
         public string UserId { get; set; }
         public List<CartItem> Items { get; set; }
-        public decimal ItemsCount
+        public int ItemsCount
         {
             get
             {
@@ -17,6 +17,18 @@ namespace Clothes_Online_Shop.Models
                 foreach (var item in Items)
                 {
                     count++;
+                }
+                return count;
+            }
+        }
+        public int ProductsCount
+        {
+            get
+            {
+                int count = 0;
+                foreach (var item in Items)
+                {
+                    count+=item.Amount;
                 }
                 return count;
             }

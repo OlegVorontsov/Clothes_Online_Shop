@@ -1,7 +1,9 @@
-﻿<div class="row">
+﻿@model Order
+
+<div class="row">
     <div class="col">
         <h3>Оформить заказ</h3>
         <p>Мы обязательно свяжемся с Вами для уточнения деталей заказа.</p>
-        <a class="btn btn-dark" href="/order/buy" role="button">Оформить заказ</a>
+        <a class="btn btn-dark" href="/order/buy?name=@Model.Name&email=@Model.Email&phone=@Model.Phone" role="button">Оформить заказ</a>
     </div>
 </div>

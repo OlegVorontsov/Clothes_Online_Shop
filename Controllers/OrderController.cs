@@ -1,5 +1,7 @@
 ﻿using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 
 namespace Clothes_Online_Shop.Controllers
 {
@@ -13,13 +15,13 @@ namespace Clothes_Online_Shop.Controllers
             this.cartsRepository = cartsRepository;
             this.ordersRepository = ordersRepository;
         }
-
-        public IActionResult Index()
+        [HttpPost]
+        public IActionResult Index(Order order)
         {
-            return View();
+            return View(order);
         }
 
-        public IActionResult Buy()
+        public IActionResult Buy(Order order)
         {
             var existingCart =  cartsRepository.TryGetByUserId(ShopUser.UserId);
             ordersRepository.Add(existingCart);
