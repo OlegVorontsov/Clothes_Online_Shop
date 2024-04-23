@@ -1,12 +1,8 @@
+using Clothes_Online_Shop.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Clothes_Online_Shop
 {
@@ -21,6 +17,8 @@ namespace Clothes_Online_Shop
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IProductsRepository, ProductsInMemoryRepository>();
+            services.AddSingleton<ICartsRepository, CartsInMemoryRepository>();
             services.AddControllersWithViews();
         }
 

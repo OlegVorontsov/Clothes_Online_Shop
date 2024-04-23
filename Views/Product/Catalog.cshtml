@@ -9,12 +9,12 @@
     {
         <div class="col-3 card shadow">
             <div class="card-body">
-                <img class="card-img-top" src="~/img/hudi.jpg" />
+                <img class="card-img-top" src="@product.ImgPath"/>
                 <a href="/product/index/@product.Id">
                     <h5>@product.Name</h5>
                     <h5>@product.Cost руб.</h5>
                 </a>
-                <button class="btn btn-dark">Добавить в корзину</button>
+                <a class="btn btn-dark" href="/cart/add?productId=@product.Id" role="button">Добавить в корзину</a>
             </div>
         </div>
     }

@@ -14,6 +14,7 @@
         public string Brand { get; }
         public string Country { get; }
         public string Description { get;}
+        public string ImgPath { get; }
         public bool Like { get; }
         public Product(string name,
                        string item,
@@ -25,6 +26,7 @@
                        string brand,
                        string country,
                        string description,
+                       string imgPath,
                        bool like)
         {
             Id = instanceCounter;
@@ -38,6 +40,7 @@
             Brand = brand;
             Country = country;
             Description = description;
+            ImgPath = imgPath;
             Like = like;
             instanceCounter++;
         }
