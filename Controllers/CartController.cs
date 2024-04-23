@@ -28,5 +28,16 @@ namespace Clothes_Online_Shop.Controllers
             cartsRepository.Add(product, ShopUser.UserId);
             return RedirectToAction("Index");
         }
+
+        public IActionResult DecreaseAmount(int productId)
+        {
+            cartsRepository.DecreaseAmount(productId, ShopUser.UserId);
+            return RedirectToAction("Index");
+        }
+        public IActionResult DeleteItem(int productId)
+        {
+            cartsRepository.DeleteItem(productId, ShopUser.UserId);
+            return RedirectToAction("Index");
+        }
     }
 }

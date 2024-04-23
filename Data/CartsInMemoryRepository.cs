@@ -54,5 +54,37 @@ namespace Clothes_Online_Shop.Data
                 }
             }
         }
+        //уменьшение кол-ва позиции в корзине
+        public void DecreaseAmount(int productId, string userId)
+        {
+            var existingCart = TryGetByUserId(userId);
+            var existingCartItem = existingCart?.Items?.FirstOrDefault(x => x.Product.Id == productId);
+            if (existingCartItem == null)
+            {
+                return;
+            }
+            existingCartItem.Amount -= 1;
+            if (existingCartItem.Amount==0)
+            {
+                existingCart.Items.Remove(existingCartItem);
+            }
+        }
+        //удаление позиции из корзине
+        public void DeleteItem(int productId, string userId)
+        {
+            var existingCart = TryGetByUserId(userId);
+            var existingCartItem = existingCart?.Items?.FirstOrDefault(x => x.Product.Id == productId);
+            if (existingCartItem == null)
+            {
+                return;
+            }
+            existingCart.Items.Remove(existingCartItem);
+        }
+        //очистка корзины
+        public void Clear(string userId)
+        {
+            var existingCart = TryGetByUserId(userId);
+            carts.Remove(existingCart);
+        }
     }
 }

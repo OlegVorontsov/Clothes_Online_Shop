@@ -6,5 +6,8 @@ namespace Clothes_Online_Shop.Data
     {
         Cart TryGetByUserId(string userId);
         void Add(Product product, string userId);
+        void DecreaseAmount(int productId, string userId);
+        void DeleteItem(int productId, string userId);
+        void Clear(string userId);
     }
 }

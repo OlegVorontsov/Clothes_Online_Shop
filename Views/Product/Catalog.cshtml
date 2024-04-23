@@ -7,9 +7,9 @@
 <div class="row">
     @foreach (var product in Model)
     {
-        <div class="col-3 card shadow">
-            <div class="card-body">
-                <img class="card-img-top" src="@product.ImgPath"/>
+        <div class="col-3">
+            <div>
+                <img class="card-img-top" src="@product.ImgPath" />
                 <a href="/product/index/@product.Id">
                     <h5>@product.Name</h5>
                     <h5>@product.Cost руб.</h5>

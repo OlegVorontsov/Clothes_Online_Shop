@@ -4,14 +4,38 @@
     ViewData["Title"] = "Home Page";
 }
 
-@if (Model == null)
-{
-    <h3>Корзина пустая</h3>
-}
-else
-{
-    <div class="row">
-        <div class="col">
+<div class="row">
+    <div class="col-6">
+        <h3>Информация о клиенте</h3>
+        <form id="request" action="#" method="post">
+            <p>Ваше имя</p>
+            <p>Имя получателя заказа</p>
+            <input type="text" name="name" placeholder="Ваше имя" required>
+            <p>E-mail</p>
+            <p>Для отправки деталей заказа, статуса производства и доставки</p>
+            <input type="email" name="email" placeholder="Введите e-mail" required>
+            <p>Телефон</p>
+            <p>Чтобы мы могли связаться для уточнения деталей доставки или заказанного товара</p>
+            <input type="tel" name="phone" placeholder="Введите телефон" required>
+        </form>
+        <h3>Информация о доставке</h3>
+        <p>
+            Бесплатная доставка при заказе от 3 000 руб.
+            Вы можете выбрать подходящий для вас способ доставки товара:
+        </p>
+        <div>
+            <p>Курьерская доставка. Срок – от 1 дня.</p>
+            <p>Пункты выдачи заказов и постаматы. Срок – от 1 дня.</p>
+            <p>Самовывозом из магазина. Срок – от 1 дня.</p>
+        </div>
+    </div>
+    <div class="col-6">
+        @if (Model == null || Model.ItemsCount == 0)
+        {
+            <h3>Корзина пустая</h3>
+        }
+        else
+        {
             <table class="table">
                 <thead>
                     <tr>
@@ -30,12 +54,21 @@ else
                             <td>
                                 <img style="max-width: 68px" src="@item.Product.ImgPath" />
                             </td>
-                            <td>@item.Product.Color</td>
+                            <td>
+                                <div>
+                                    <p>@item.Product.Color</p>
+                                    <a href="/cart/deleteItem?productId=@item.Product.Id" role="button">Удалить товар</a>
+                                </div>
+                            </td>
                             <td>@item.Product.Size</td>
                             <td>
                                 <strong>@item.Product.Cost ₽</strong>
                             </td>
-                            <td>@item.Amount</td>
+                            <td>
+                                <a href="/cart/decreaseAmount?productId=@item.Product.Id" role="button">&lt;</a>
+                                @item.Amount
+                                <a href="/cart/add?productId=@item.Product.Id" role="button">&gt;</a>
+                            </td>
                             <td>
                                 <strong>@item.Cost ₽</strong>
                             </td>
@@ -50,8 +83,10 @@ else
                 <p>Доставка @ShopUser.UserDelivery ₽</p>
                 <h3>ИТОГО @Model.FullCost ₽</h3>
             </div>
-        </div>
+            <a class="btn btn-dark" href="/order/index" role="button">Оформить заказ</a>
+        }
     </div>
-}
+</div>
 
-<a href="/product/catalog">В каталог</a>
+
+
