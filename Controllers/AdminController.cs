@@ -1,13 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Clothes_Online_Shop.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Clothes_Online_Shop.Controllers
 {
     public class AdminController : Controller
     {
+        private readonly IProductsRepository productsRepository;
+
+        public AdminController(IProductsRepository productsRepository)
+        {
+            this.productsRepository = productsRepository;
+        }
+
         public IActionResult Orders()
         {
             return View();
@@ -22,7 +26,8 @@ namespace Clothes_Online_Shop.Controllers
         }
         public IActionResult Products()
         {
-            return View();
+            var products = productsRepository.GetAll();
+            return View(products);
         }
     }
 }
