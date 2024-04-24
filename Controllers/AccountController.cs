@@ -14,5 +14,14 @@ namespace Clothes_Online_Shop.Controllers
         {
             return RedirectToAction("Index", "Home");
         }
+        public IActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Register(Login loginInfo)
+        {
+            return RedirectToAction("Index", "Home");
+        }
     }
 }
