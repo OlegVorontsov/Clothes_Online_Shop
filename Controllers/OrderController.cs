@@ -16,15 +16,17 @@ namespace Clothes_Online_Shop.Controllers
             this.ordersRepository = ordersRepository;
         }
         [HttpPost]
-        public IActionResult Index(Order order)
+        public IActionResult Index(UserDeliveryInfo userInfo)
         {
-            return View(order);
+            return View(userInfo);
         }
 
-        public IActionResult Buy(Order order)
+        public IActionResult Buy(UserDeliveryInfo userInfo)
         {
             var existingCart =  cartsRepository.TryGetByUserId(ShopUser.UserId);
-            ordersRepository.Add(existingCart);
+            var newOrder = new Order { UserInfo = userInfo, Items = existingCart.Items };
+
+            ordersRepository.Add(newOrder);
             cartsRepository.Clear(ShopUser.UserId);
             return RedirectToAction("Catalog", "Product");
         }

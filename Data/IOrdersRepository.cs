@@ -4,6 +4,6 @@ namespace Clothes_Online_Shop.Data
 {
     public interface IOrdersRepository
     {
-        public void Add(Cart cart);
+        public void Add(Order order);
     }
 }
