@@ -19,7 +19,7 @@ namespace Clothes_Online_Shop.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Register(Login loginInfo)
+        public IActionResult Register(Register registerInfo)
         {
             return RedirectToAction("Index", "Home");
         }
