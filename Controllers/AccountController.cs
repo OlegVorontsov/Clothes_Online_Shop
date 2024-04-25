@@ -12,6 +12,14 @@ namespace Clothes_Online_Shop.Controllers
         [HttpPost]
         public IActionResult Login(Login loginInfo)
         {
+            if (loginInfo.Email == loginInfo.Password)
+            {
+                ModelState.AddModelError("", "e-mail и пароль не должны совпадать");
+            }
+            if (ModelState.IsValid)
+            {
+                return Content($"{loginInfo.Email} - {loginInfo.Password}");
+            }
             return RedirectToAction("Index", "Home");
         }
         public IActionResult Register()
@@ -21,6 +29,14 @@ namespace Clothes_Online_Shop.Controllers
         [HttpPost]
         public IActionResult Register(Register registerInfo)
         {
+            if (registerInfo.Email == registerInfo.Password)
+            {
+                ModelState.AddModelError("", "e-mail и пароль не должны совпадать");
+            }
+            if (ModelState.IsValid)
+            {
+                return Content($"{registerInfo.Email} - {registerInfo.Password} - {registerInfo.ConfirmPassword}");
+            }
             return RedirectToAction("Index", "Home");
         }
     }

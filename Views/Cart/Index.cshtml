@@ -5,7 +5,7 @@
 }
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-5">
         <h3>Информация о клиенте</h3>
         <form id="request" method="post">
             <p>Ваше имя</p>
@@ -26,10 +26,10 @@
                 <p>Пункты выдачи заказов и постаматы. Срок – от 1 дня.</p>
                 <p>Самовывозом из магазина. Срок – от 1 дня.</p>
             </div>
-            <button class="btn btn-dark" type="submit" asp-controller="Order" asp-action="Index">Оформить заказ</button>
+            <button class="btn btn-secondary" type="submit" asp-controller="Order" asp-action="Index">Оформить заказ</button>
         </form>
     </div>
-    <div class="col-6">
+    <div class="col-7">
         @if (Model == null || Model.ItemsCount == 0)
         {
             <h3>Корзина пустая</h3>

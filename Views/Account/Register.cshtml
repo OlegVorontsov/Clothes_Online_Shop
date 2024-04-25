@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Register
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,13 +8,23 @@
     <div class="col-4">
         <h3 class="text-center">Регистрация</h3>
         <form id="request" method="post">
-            <p>Введите ваш e-mail</p>
-            <input style="min-width:100%" type="email" name="email" placeholder="e-mail*" required>
-            <p>Введите ваш пароль</p>
-            <input style="min-width:100%" type="password" name="password" placeholder="пароль*" required>
-            <p>Подтвердите ваш пароль</p>
-            <input style="min-width:100%" type="password" name="confirmPassword" placeholder="подтвердите пароль*" required>
-            <button style="min-width:100%" class="btn btn-dark" type="submit" asp-controller="Account" asp-action="Register">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <div class="flex justify-content-between">
+                <label asp-for="Email">Введите ваш e-mail</label>
+                <span asp-validation-for="Email"></span>
+                <input style="min-width:100%" asp-for="Email" placeholder="e-mail*" />
+            </div>
+            <div class="flex justify-content-between">
+                <label asp-for="Password">Введите ваш пароль</label>
+                <span asp-validation-for="Password"></span>
+                <input style="min-width:100%" asp-for="Password" placeholder="пароль*" />
+            </div>
+            <div class="flex justify-content-between">
+                <label asp-for="ConfirmPassword">Подтвердите ваш пароль</label>
+                <span asp-validation-for="ConfirmPassword"></span>
+                <input style="min-width:100%" asp-for="ConfirmPassword" placeholder="подтвердите пароль*" />
+            </div>
+            <button style="min-width:100%" class="btn btn-secondary" type="submit" asp-controller="Account" asp-action="Register">ЗАРЕГИСТРИРОВАТЬСЯ</button>
         </form>
     </div>
 </div>
