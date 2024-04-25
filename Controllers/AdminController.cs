@@ -1,4 +1,5 @@
 ﻿using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clothes_Online_Shop.Controllers
@@ -28,6 +29,20 @@ namespace Clothes_Online_Shop.Controllers
         {
             var products = productsRepository.GetAll();
             return View(products);
+        }
+        public IActionResult AddProduct()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult AddProduct(Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+            productsRepository.AddProduct(product);
+            return RedirectToAction("Products");
         }
     }
 }

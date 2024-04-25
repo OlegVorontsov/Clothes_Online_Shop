@@ -27,18 +27,19 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>@item.Item</td>
-                        <td>@item.Name</td>
-                        <td>@item.Color</td>
-                        <td>@item.Size</td>
-                        <td>
-                            <strong>@item.Cost ₽</strong>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@item.Item</td>
+                            <td>@item.Name</td>
+                            <td>@item.Color</td>
+                            <td>@item.Size</td>
+                            <td>
+                                <strong>@item.Cost ₽</strong>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
         }
+        <a class="btn btn-secondary" href="/admin/addProduct" role="button">Добавить продукт</a>
     </div>
 </div>

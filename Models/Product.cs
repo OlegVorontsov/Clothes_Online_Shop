@@ -1,21 +1,40 @@
-﻿namespace Clothes_Online_Shop.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Clothes_Online_Shop.Models
 {
     public class Product
     {
         private static int instanceCounter = 0;
-        public int Id { get; }
-        public string Name { get; }
-        public string Item { get; }
-        public decimal Cost { get; }
-        public int Size { get; }
-        public string Color { get; }
-        public string Care { get; }
-        public string Fabric { get; }
-        public string Brand { get; }
-        public string Country { get; }
-        public string Description { get;}
-        public string ImgPath { get; }
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Введите название продукта")]
+        public string Name { get; set; }
+        [Required(ErrorMessage = "Введите артикул продукта")]
+        public string Item { get; set; }
+        [Required(ErrorMessage = "Введите цену продукта")]
+        [Range(50, 1000000, ErrorMessage = "Цена от 50 до 1000000 руб.")]
+        public decimal Cost { get; set; }
+        [Required(ErrorMessage = "Введите размер продукта")]
+        [Range(20, 60, ErrorMessage ="Диапазон от 0 до 60")]
+        public int Size { get; set; }
+        [Required(ErrorMessage = "Введите цвет продукта")]
+        public string Color { get; set; }
+        [Required(ErrorMessage = "Введите уход за продуктом")]
+        public string Care { get; set; }
+        [Required(ErrorMessage = "Введите состав продукта")]
+        public string Fabric { get; set; }
+        [Required(ErrorMessage = "Введите фирму продукта")]
+        public string Brand { get; set; }
+        [Required(ErrorMessage = "Введите страну-производитель продукта")]
+        public string Country { get; set; }
+        [Required(ErrorMessage = "Введите описание продукта")]
+        public string Description { get; set; }
+        public string ImgPath { get; set; }
         public bool Like { get; }
+        public Product()
+        {
+            Id = instanceCounter;
+            instanceCounter++;
+        }
         public Product(string name,
                        string item,
                        decimal cost,
@@ -27,9 +46,8 @@
                        string country,
                        string description,
                        string imgPath,
-                       bool like)
+                       bool like) : this()
         {
-            Id = instanceCounter;
             Name = name;
             Item = item;
             Cost = cost;
@@ -42,7 +60,6 @@
             Description = description;
             ImgPath = imgPath;
             Like = like;
-            instanceCounter++;
         }
         public override string ToString()
         {

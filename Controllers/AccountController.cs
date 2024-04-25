@@ -18,9 +18,9 @@ namespace Clothes_Online_Shop.Controllers
             }
             if (ModelState.IsValid)
             {
-                return Content($"{loginInfo.Email} - {loginInfo.Password}");
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login");
         }
         public IActionResult Register()
         {
@@ -35,9 +35,9 @@ namespace Clothes_Online_Shop.Controllers
             }
             if (ModelState.IsValid)
             {
-                return Content($"{registerInfo.Email} - {registerInfo.Password} - {registerInfo.ConfirmPassword}");
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Register");
         }
     }
 }

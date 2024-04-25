@@ -30,5 +30,10 @@ namespace Clothes_Online_Shop.Data
         {
             return products;
         }
+        public void AddProduct(Product product)
+        {
+            product.ImgPath = "/img/test.jpg";
+            products.Add(product);
+        }
     }
 }

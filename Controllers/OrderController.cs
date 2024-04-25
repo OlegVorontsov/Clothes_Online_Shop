@@ -23,9 +23,12 @@ namespace Clothes_Online_Shop.Controllers
 
         public IActionResult Buy(UserDeliveryInfo userInfo)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Cart", userInfo);
+            }
             var existingCart =  cartsRepository.TryGetByUserId(ShopUser.UserId);
             var newOrder = new Order { UserInfo = userInfo, Items = existingCart.Items };
-
             ordersRepository.Add(newOrder);
             cartsRepository.Clear(ShopUser.UserId);
             return RedirectToAction("Catalog", "Product");
