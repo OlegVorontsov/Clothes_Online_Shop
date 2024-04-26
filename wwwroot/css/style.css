@@ -21,6 +21,7 @@
 
 img {
     width: 100%;
+    vertical-align: unset;
 }
 
 body {
@@ -59,8 +60,19 @@ a {
     color: var(--color-light);
 }
 
+.link-reset:hover::before {
+    opacity: 0;
+}
+
 .link-reset:active {
     color: var(--color-active);
+}
+
+.btn-reset {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .btn {
@@ -89,7 +101,6 @@ a {
 }
 
 /* header */
-
 .header {
     max-height: 180px;
     max-width: 1440px;
@@ -105,7 +116,10 @@ a {
 }
 
 .header__center {
+    display: flex;
+    justify-content: space-between;
     min-height: 72px;
+    padding: 0 75px;
     background-color: var(--color-dark);
 }
 
@@ -129,9 +143,116 @@ a {
     color: var(--color-default);
 }
 
+.header__left {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
 
+.header__logo {
+    max-height: 60px;
+}
 
+.header__logo-img{
+    width: 60px;
+    height: 60px;
+}
 
+.header__location {
+    width: 91px;
+    height: 16px;
+}
 
+.header__logo:focus-visible,
+.header__location:focus-visible {
+    outline: 2px solid var(--color-light);
+    outline-offset: 2px;
+}
 
+.header__logo:hover,
+.header__location:hover {
+    outline: none;
+}
 
+.header__buttons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header__btn-sale {
+    padding: 13px 27px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-white);
+}
+
+.header__btn {
+    min-height: 100%;
+    padding: 0 20px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-white);
+    background-color: var(--color-dark);
+    transition: background-color 0.3s linear;
+}
+
+.header__btn:focus,
+.header__btn:hover {
+    outline: none;
+    background-color: #2b2b2b;
+}
+
+.header__btn:active {
+    background-color: var(--color-active);
+}
+
+.header__right {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.header__right-btn {
+    width: 35px;
+    height: 35px;
+}
+
+.header__right-btn svg {
+    width: 35px;
+    height: 35px;
+}
+
+.svg-path {
+    transition: stroke 0.3s ease-in-out;
+}
+
+.header__right-btn:focus {
+    outline: none;
+}
+
+.header__right-btn:hover .svg-path {
+    stroke: var(--color-light);
+}
+
+.header__right-btn:active .svg-path {
+    stroke: var(--color-white);
+}
+
+.header__cart {
+    position:relative;
+}
+
+.header__cart-counter {
+    position: absolute;
+    top: 39%;
+    right: 30%;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 1;
+    color: red;
+}
