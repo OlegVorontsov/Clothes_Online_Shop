@@ -6,27 +6,27 @@ namespace Clothes_Online_Shop.Models
     {
         private static int instanceCounter = 0;
         public int Id { get; set; }
-        [Required(ErrorMessage = "Введите название продукта")]
+        [Required(ErrorMessage = "обязательное поле*")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Введите артикул продукта")]
+        [Required(ErrorMessage = "обязательное поле*")]
         public string Item { get; set; }
-        [Required(ErrorMessage = "Введите цену продукта")]
-        [Range(50, 1000000, ErrorMessage = "Цена от 50 до 1000000 руб.")]
+        [Required(ErrorMessage = "обязательное поле*")]
+        [Range(50, 1000000, ErrorMessage = "Цена 50...100000 руб.")]
         public decimal Cost { get; set; }
-        [Required(ErrorMessage = "Введите размер продукта")]
-        [Range(20, 60, ErrorMessage ="Диапазон от 0 до 60")]
+        [Required(ErrorMessage = "обязательное поле*")]
+        [Range(20, 60, ErrorMessage ="Диапазон 0...60")]
         public int Size { get; set; }
-        [Required(ErrorMessage = "Введите цвет продукта")]
+        [Required(ErrorMessage = "обязательное поле*")]
         public string Color { get; set; }
-        [Required(ErrorMessage = "Введите уход за продуктом")]
+        [Required(ErrorMessage = "обязательное поле*")]
         public string Care { get; set; }
-        [Required(ErrorMessage = "Введите состав продукта")]
+        [Required(ErrorMessage = "обязательное поле*")]
         public string Fabric { get; set; }
-        [Required(ErrorMessage = "Введите фирму продукта")]
+        [Required(ErrorMessage = "обязательное поле*")]
         public string Brand { get; set; }
-        [Required(ErrorMessage = "Введите страну-производитель продукта")]
+        [Required(ErrorMessage = "обязательное поле*")]
         public string Country { get; set; }
-        [Required(ErrorMessage = "Введите описание продукта")]
+        [Required(ErrorMessage = "обязательное поле*")]
         public string Description { get; set; }
         public string ImgPath { get; set; }
         public bool Like { get; }

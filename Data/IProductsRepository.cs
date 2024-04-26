@@ -8,5 +8,6 @@ namespace Clothes_Online_Shop.Data
         Product TryGetById(int id);
         List<Product> GetAll();
         void AddProduct(Product product);
+        void Update(Product product);
     }
 }

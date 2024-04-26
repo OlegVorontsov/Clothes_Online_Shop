@@ -44,5 +44,20 @@ namespace Clothes_Online_Shop.Controllers
             productsRepository.AddProduct(product);
             return RedirectToAction("Products");
         }
+        public IActionResult EditProduct()
+        {
+            //copu from addProduct
+            return View();
+        }
+        [HttpPost]
+        public IActionResult EditProduct(Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+            productsRepository.Update(product);
+            return RedirectToAction("Products");
+        }
     }
 }

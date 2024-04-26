@@ -35,5 +35,24 @@ namespace Clothes_Online_Shop.Data
             product.ImgPath = "/img/test.jpg";
             products.Add(product);
         }
+
+        public void Update(Product product)
+        {
+            var existingProduct = products.FirstOrDefault(p => p.Id == product.Id);
+            if (existingProduct == null)
+            {
+                return;
+            }
+            existingProduct.Name = product.Name;
+            existingProduct.Item = product.Item;
+            existingProduct.Cost = product.Cost;
+            existingProduct.Size = product.Size;
+            existingProduct.Color = product.Color;
+            existingProduct.Care = product.Care;
+            existingProduct.Fabric = product.Fabric;
+            existingProduct.Brand = product.Brand;
+            existingProduct.Country = product.Country;
+            existingProduct.Description = product.Description;
+        }
     }
 }

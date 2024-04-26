@@ -17,25 +17,33 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>АРТИКУЛ</th>
-                        <th>НАЗВАНИЕ</th>
-                        <th>ЦВЕТ</th>
-                        <th>РАЗМЕР</th>
-                        <th>ЦЕНА</th>
+                        <th>Артикул</th>
+                        <th>Название</th>
+                        <th>Цвет</th>
+                        <th>Размер</th>
+                        <th>Цена</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.Item</td>
-                            <td>@item.Name</td>
-                            <td>@item.Color</td>
-                            <td>@item.Size</td>
-                            <td>
-                                <strong>@item.Cost ₽</strong>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>@item.Item</td>
+                        <td>@item.Name</td>
+                        <td>@item.Color</td>
+                        <td>@item.Size</td>
+                        <td>
+                            <strong>@item.Cost ₽</strong>
+                        </td>
+                        <td>
+                            <a class= "btn-secondary btn" href="/admin/editProduct?productId=@item.Id" role="button">Изменить</a>
+                        </td>
+                        <td>
+                            <a class="btn-danger btn" href="/admin/deleteProduct?productId=@item.Id" role="button">Удалить</a>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>
