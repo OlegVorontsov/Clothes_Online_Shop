@@ -1,21 +1,41 @@
 ﻿using Clothes_Online_Shop.Data;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace Clothes_Online_Shop.Controllers
 {
     public class AdminController : Controller
     {
         private readonly IProductsRepository productsRepository;
+        private readonly IOrdersRepository ordersRepository;
 
-        public AdminController(IProductsRepository productsRepository)
+        public AdminController(IProductsRepository productsRepository, IOrdersRepository ordersRepository)
         {
             this.productsRepository = productsRepository;
+            this.ordersRepository = ordersRepository;
         }
 
         public IActionResult Orders()
         {
-            return View();
+            var orders = ordersRepository.GetAll();
+            return View(orders);
+        }
+
+        public IActionResult OrderDetails(Guid orderId)
+        {
+            var order = ordersRepository.TryGetById(orderId);
+            return View(order);
+        }
+        public IActionResult DeleteOrder(Guid orderId)
+        {
+            if (!ModelState.IsValid)
+            {
+                var order = ordersRepository.TryGetById(orderId);
+                return RedirectToAction("Index", "Order", order.UserInfo);
+            }
+            ordersRepository.DeleteOrder(orderId);
+            return RedirectToAction("Orders");
         }
         public IActionResult Users()
         {

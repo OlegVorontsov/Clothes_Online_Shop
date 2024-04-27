@@ -34,6 +34,14 @@ a {
     color: inherit;
     outline: none;
 }
+
+/*resets*/
+
+.table td,
+.table th {
+    vertical-align: unset;
+}
+
 /*для кнопок не по bootstrap*/
 .btn-reset {
     padding: 0;

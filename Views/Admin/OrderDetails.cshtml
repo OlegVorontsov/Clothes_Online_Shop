@@ -1,0 +1,42 @@
+﻿@model Order
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    @await Html.PartialAsync("AdminLeft")
+    <div class="col-10">
+        <h4>Заказ @Model.Id</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Статус</th>
+                    <th>Получатель</th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Сумма</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.Status</td>
+                    <td>
+                        <p>@Model.UserInfo.Email</p>
+                        <p>@Model.UserInfo.Name</p>
+                        <p>@Model.UserInfo.Phone</p>
+                    </td>
+                    <td>@Model.CreatedDateTime.ToShortDateString()</td>
+                    <td>@Model.CreatedDateTime.ToShortTimeString()</td>
+                    <td>
+                        <strong>@Model.TotalCost ₽</strong>
+                    </td>
+                    <td>
+                        <a class="btn-danger btn" href="/admin/deleteOrder?orderId=@Model.Id" role="button">Удалить</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

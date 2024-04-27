@@ -14,5 +14,21 @@ namespace Clothes_Online_Shop.Data
         {
             orders.Add(order);
         }
+
+        public void DeleteOrder(Guid orderId)
+        {
+            var order = orders.FirstOrDefault(o => o.Id == orderId);
+            orders.Remove(order);
+        }
+
+        public List<Order> GetAll()
+        {
+            return orders;
+        }
+
+        public Order TryGetById(Guid orderId)
+        {
+            return orders.FirstOrDefault(o => o.Id == orderId);
+        }
     }
 }

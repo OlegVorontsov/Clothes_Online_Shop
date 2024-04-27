@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Order>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,5 +8,42 @@
     @await Html.PartialAsync("AdminLeft")
     <div class="col-10">
         <h4>Заказы</h4>
+        @if (Model == null || Model.Count == 0)
+        {
+            <h3>Заказов нет</h3>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Номер</th>
+                        <th>Сумма</th>
+                        <th>Статус</th>
+                        <th>Дата</th>
+                        <th>Время</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                    <tr>
+                        <td>@(i+1)</td>
+                        <td>
+                            <strong>@Model[i].TotalCost ₽</strong>
+                        </td>
+                        <td>@Model[i].Status</td>
+                        <td>@Model[i].CreatedDateTime.ToShortDateString()</td>
+                        <td>@Model[i].CreatedDateTime.ToShortTimeString()</td>
+                        <td>
+                            <a class="btn-secondary btn" href="/admin/orderDetails?orderId=@Model[i].Id" role="button">Подробнее</a>
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
     </div>
 </div>
