@@ -9,11 +9,13 @@ namespace Clothes_Online_Shop.Controllers
     {
         private readonly IProductsRepository productsRepository;
         private readonly IOrdersRepository ordersRepository;
+        private readonly IRolesRepository rolesRepository;
 
-        public AdminController(IProductsRepository productsRepository, IOrdersRepository ordersRepository)
+        public AdminController(IProductsRepository productsRepository, IOrdersRepository ordersRepository, IRolesRepository rolesRepository)
         {
             this.productsRepository = productsRepository;
             this.ordersRepository = ordersRepository;
+            this.rolesRepository = rolesRepository;
         }
 
         public IActionResult Orders()
@@ -48,8 +50,35 @@ namespace Clothes_Online_Shop.Controllers
         }
         public IActionResult Roles()
         {
+            var roles = rolesRepository.GetAll();
+            return View(roles);
+        }
+        public IActionResult RemoveRole(string roleName)
+        {
+            rolesRepository.Remove(roleName);
+            return RedirectToAction("Roles");
+        }
+        public IActionResult AddRole()
+        {
             return View();
         }
+        [HttpPost]
+        public IActionResult AddRole(Role role)
+        {
+            if (rolesRepository.TryGetByName(role.Name) != null)
+            {
+                ModelState.AddModelError("", $"{role.Name} уже есть!");
+            }
+            if (ModelState.IsValid)
+            {
+                rolesRepository.AddRole(role);
+                return RedirectToAction("Roles");
+            }
+            return View(role);
+        }
+
+
+
         public IActionResult Products()
         {
             var products = productsRepository.GetAll();

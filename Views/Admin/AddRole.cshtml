@@ -1,0 +1,20 @@
+﻿@model Role
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <h3 class="text-center">Добавление роли</h3>
+        <form id="request" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <div class="flex justify-content-between">
+                <label asp-for="Name">Введите название роли</label>
+                <span class="text-danger" asp-validation-for="Name"></span>
+                <input class="input-reset" asp-for="Name" placeholder="название*" />
+            </div>
+            <button style="min-width:100%" class="btn btn-secondary" type="submit" asp-controller="Admin" asp-action="AddRole">Добавить</button>
+        </form>
+    </div>
+</div>

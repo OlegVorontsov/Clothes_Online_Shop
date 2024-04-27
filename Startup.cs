@@ -20,6 +20,7 @@ namespace Clothes_Online_Shop
             services.AddSingleton<IProductsRepository, ProductsInMemoryRepository>();
             services.AddSingleton<ICartsRepository, CartsInMemoryRepository>();
             services.AddSingleton<IOrdersRepository, OrdersInMemoryRepository>();
+            services.AddSingleton<IRolesRepository, RolesInMemoryRepository>();
             services.AddControllersWithViews();
         }
 

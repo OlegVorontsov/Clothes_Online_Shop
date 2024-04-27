@@ -33,7 +33,7 @@
                         <td>
                             <strong>@Model[i].TotalCost ₽</strong>
                         </td>
-                        <td>@Model[i].Status</td>
+                        <td>@EnumHelper.GetDisplayName(Model[i].Status)</td>
                         <td>@Model[i].CreatedDateTime.ToShortDateString()</td>
                         <td>@Model[i].CreatedDateTime.ToShortTimeString()</td>
                         <td>
