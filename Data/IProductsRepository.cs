@@ -9,5 +9,6 @@ namespace Clothes_Online_Shop.Data
         List<Product> GetAll();
         void AddProduct(Product product);
         void Update(Product product);
+        public void Delete(int productId);
     }
 }

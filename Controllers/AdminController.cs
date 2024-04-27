@@ -63,5 +63,24 @@ namespace Clothes_Online_Shop.Controllers
             productsRepository.Update(product);
             return RedirectToAction("Products");
         }
+        public IActionResult Delete(int productId)
+        {
+            var existingProduct = productsRepository.TryGetById(productId);
+            if (existingProduct == null)
+            {
+                return RedirectToAction("Products");
+            }
+            return View(existingProduct);
+        }
+
+        public IActionResult DeleteProduct(int productId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Product", productId);
+            }
+            productsRepository.Delete(productId);
+            return RedirectToAction("Products");
+        }
     }
 }

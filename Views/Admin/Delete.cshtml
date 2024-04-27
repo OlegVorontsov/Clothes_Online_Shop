@@ -1,0 +1,39 @@
+﻿@model Product
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <h3 class="text-center">Удалить товар?</h3>
+        <form id="request" method="post">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Артикул</th>
+                        <th>Название</th>
+                        <th>Цвет</th>
+                        <th>Размер</th>
+                        <th>Цена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@Model.Item</td>
+                        <td>@Model.Name</td>
+                        <td>@Model.Color</td>
+                        <td>@Model.Size</td>
+                        <td>
+                            <strong>@Model.Cost ₽</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <a class="btn-secondary btn" href="/admin/products" role="button">Отменить</a>
+                <a class="btn-danger btn" href="/admin/deleteProduct?productId=@Model.Id" role="button">Удалить</a>
+            </div>
+        </form>
+    </div>
+</div>

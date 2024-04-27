@@ -57,5 +57,14 @@ namespace Clothes_Online_Shop.Data
             existingProduct.Country = product.Country;
             existingProduct.Description = product.Description;
         }
+        public void Delete(int productId)
+        {
+            var existingProduct = products.FirstOrDefault(p => p.Id == productId);
+            if (existingProduct == null)
+            {
+                return;
+            }
+            products.Remove(existingProduct);
+        }
     }
 }
