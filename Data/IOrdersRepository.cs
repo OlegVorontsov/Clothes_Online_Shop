@@ -10,5 +10,6 @@ namespace Clothes_Online_Shop.Data
         List<Order> GetAll();
         Order TryGetById(Guid orderId);
         void DeleteOrder(Guid orderId);
+        void UpdateStatus(Guid orderId, OrderStatus newStatus);
     }
 }

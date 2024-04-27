@@ -37,6 +37,11 @@ namespace Clothes_Online_Shop.Controllers
             ordersRepository.DeleteOrder(orderId);
             return RedirectToAction("Orders");
         }
+        public IActionResult UpdateOrderStatus(Guid orderId, OrderStatus newStatus)
+        {
+            ordersRepository.UpdateStatus(orderId, newStatus);
+            return RedirectToAction("Orders");
+        }
         public IActionResult Users()
         {
             return View();

@@ -17,8 +17,11 @@ namespace Clothes_Online_Shop.Data
 
         public void DeleteOrder(Guid orderId)
         {
-            var order = orders.FirstOrDefault(o => o.Id == orderId);
-            orders.Remove(order);
+            var order = TryGetById(orderId);
+            if (order!=null)
+            {
+                orders.Remove(order);
+            }
         }
 
         public List<Order> GetAll()
@@ -29,6 +32,15 @@ namespace Clothes_Online_Shop.Data
         public Order TryGetById(Guid orderId)
         {
             return orders.FirstOrDefault(o => o.Id == orderId);
+        }
+
+        public void UpdateStatus(Guid orderId, OrderStatus newStatus)
+        {
+            var order = TryGetById(orderId);
+            if (order != null)
+            {
+                order.Status = newStatus;
+            }
         }
     }
 }

@@ -4,39 +4,48 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-    @await Html.PartialAsync("AdminLeft")
-    <div class="col-10">
-        <h4>Заказ @Model.Id</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Статус</th>
-                    <th>Получатель</th>
-                    <th>Дата</th>
-                    <th>Время</th>
-                    <th>Сумма</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>@Model.Status</td>
-                    <td>
-                        <p>@Model.UserInfo.Email</p>
-                        <p>@Model.UserInfo.Name</p>
-                        <p>@Model.UserInfo.Phone</p>
-                    </td>
-                    <td>@Model.CreatedDateTime.ToShortDateString()</td>
-                    <td>@Model.CreatedDateTime.ToShortTimeString()</td>
-                    <td>
-                        <strong>@Model.TotalCost ₽</strong>
-                    </td>
-                    <td>
-                        <a class="btn-danger btn" href="/admin/deleteOrder?orderId=@Model.Id" role="button">Удалить</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<form>
+    <input type="hidden" name="orderId" value="@Model.Id" />
+    <div class="row">
+        @await Html.PartialAsync("AdminLeft")
+        <div class="col-10">
+            <h4>Заказ @Model.Id</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Статус</th>
+                        <th>Получатель</th>
+                        <th>Дата</th>
+                        <th>Время</th>
+                        <th>Сумма</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select name="newStatus"
+                                    asp-for="@Model.Status"
+                                    asp-items="@Html.GetEnumSelectList<OrderStatus>()"
+                                    class="form-control">
+                            </select>
+                        </td>
+                        <td>
+                            <p>@Model.UserInfo.Email</p>
+                            <p>@Model.UserInfo.Name</p>
+                            <p>@Model.UserInfo.Phone</p>
+                        </td>
+                        <td>@Model.CreatedDateTime.ToShortDateString()</td>
+                        <td>@Model.CreatedDateTime.ToShortTimeString()</td>
+                        <td>
+                            <strong>@Model.TotalCost ₽</strong>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <button style="margin-right:20px" class="btn btn-secondary" type="submit" asp-controller="Admin" asp-action="UpdateOrderStatus">Обновить статус</button>
+                <a class="btn-danger btn" href="/admin/deleteOrder?orderId=@Model.Id" role="button">Удалить</a>
+            </div>
+        </div>
     </div>
-</div>
+</form>
