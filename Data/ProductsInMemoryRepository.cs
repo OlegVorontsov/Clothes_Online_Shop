@@ -18,7 +18,10 @@ namespace Clothes_Online_Shop.Data
                              "/img/hudi-black.jpg", false),
                 new Product ("Пуховая жилетка", "sk0500", 999, 50, "Бежевый", "ручная стирка", "90% пух 10% полиэстер",
                              "Stone Island", "USA", "лучшее сохранение тепла",
-                             "/img/vest.jpg", false)
+                             "/img/vest.jpg", false),
+                new Product ("Тест", "0000", 1111, 11, "Тест", "Тест", "Тест",
+                             "Тест", "Тест", "Тест",
+                             "/img/test.jpg", false)
         };
 
         public Product TryGetById (int id)

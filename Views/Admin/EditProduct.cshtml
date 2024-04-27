@@ -6,60 +6,61 @@
 
 <div class="row justify-content-center">
     <div class="col-4">
-        <h3 class="text-center">Добавление продукта</h3>
+        <h3 class="text-center">Редактирование продукта</h3>
         <form id="request" method="post">
             <div class="text-danger" asp-validation-summary="All"></div>
+            <input type="hidden" name="Id" value="@Model.Id"/>
             <div class="flex justify-content-between">
                 <label asp-for="Name">Введите название продукта</label>
                 <span class="text-danger" asp-validation-for="Name"></span>
-                <input class="input-reset" asp-for="Name" placeholder="название*" />
+                <input class="input-reset" asp-for="Name" value="@Model.Name" placeholder="название*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Item">Введите артикул продукта</label>
                 <span class="text-danger" asp-validation-for="Item"></span>
-                <input class="input-reset" asp-for="Item" placeholder="артикул*" />
+                <input class="input-reset" asp-for="Item" value="@Model.Item" placeholder="артикул*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Cost">Введите цену продукта</label>
                 <span class="text-danger" asp-validation-for="Cost"></span>
-                <input class="input-reset" type="number" asp-for="Cost" placeholder="цена*" />
+                <input class="input-reset" asp-for="Cost" value="@Model.Cost" type="number" placeholder="цена*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Size">Введите размер продукта</label>
                 <span class="text-danger" asp-validation-for="Size"></span>
-                <input class="input-reset" type="number" asp-for="Size" placeholder="размер*" />
+                <input class="input-reset" asp-for="Size" value="@Model.Size" type="number" placeholder="размер*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Color">Введите цвет продукта</label>
                 <span class="text-danger" asp-validation-for="Color"></span>
-                <input class="input-reset" asp-for="Color" placeholder="цвет*" />
+                <input class="input-reset" asp-for="Color" value="@Model.Color" placeholder="цвет*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Care">Введите уход за продуктом</label>
                 <span class="text-danger" asp-validation-for="Care"></span>
-                <input class="input-reset" asp-for="Care" placeholder="уход*" />
+                <input class="input-reset" asp-for="Care" value="@Model.Care" placeholder="уход*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Fabric">Введите состав продукта</label>
                 <span class="text-danger" asp-validation-for="Fabric"></span>
-                <input class="input-reset" asp-for="Fabric" placeholder="состав*" />
+                <input class="input-reset" asp-for="Fabric" value="@Model.Fabric" placeholder="состав*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Brand">Введите фирму продукта</label>
                 <span class="text-danger" asp-validation-for="Brand"></span>
-                <input class="input-reset" asp-for="Brand" placeholder="фирма*" />
+                <input class="input-reset" asp-for="Brand" value="@Model.Brand" placeholder="фирма*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Country">Введите страну продукта</label>
                 <span class="text-danger" asp-validation-for="Country"></span>
-                <input class="input-reset" asp-for="Country" placeholder="страна-производитель*" />
+                <input class="input-reset" asp-for="Country" value="@Model.Country" placeholder="страна-производитель*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Description">Введите описание продукта</label>
                 <span class="text-danger" asp-validation-for="Description"></span>
-                <input class="input-reset" asp-for="Description" placeholder="описание*" />
+                <input class="input-reset" asp-for="Description" value="@Model.Description" placeholder="описание*" />
             </div>
-            <button style="min-width:100%" class="btn btn-secondary" type="submit" asp-controller="Admin" asp-action="AddProduct">Добавить</button>
+            <button style="min-width:100%" class="btn btn-secondary" type="submit" asp-controller="Admin" asp-action="EditProduct">Сохранить</button>
         </form>
     </div>
 </div>

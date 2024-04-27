@@ -34,25 +34,14 @@ a {
     color: inherit;
     outline: none;
 }
-
-label {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 1;
-    text-transform: uppercase;
-    color: var(--color-dark);
-    margin-bottom: 1rem;
+/*для кнопок не по bootstrap*/
+.btn-reset {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
-
-.text--reset-uppercase {
-    margin: 0;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1;
-    text-transform: uppercase;
-    color: var(--color-default);
-}
-
+/*для ссылок НЕ в виде кнопок*/
 .link-reset {
     position: relative;
     transition: color 0.3s ease-in-out;
@@ -86,21 +75,13 @@ label {
 .link-reset:active {
     color: var(--color-active);
 }
-
-.btn-reset {
-    padding: 0;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-}
-
+/*для bootstrap*/
 .btn {
     border-radius: 50px;
     padding: 0.75rem 1.5rem;
 }
 
 .link-reset,
-.btn-reset,
 .btn {
     font-weight: 600;
     font-size: 14px;
@@ -164,6 +145,15 @@ label {
     max-height: 180px;
     max-width: 1440px;
     margin: 0 auto;
+}
+
+.header__top-text {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-default);
 }
 
 .header__top {
@@ -232,10 +222,6 @@ label {
 
 .header__btn-sale {
     padding: 13px 27px;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1;
-    text-transform: uppercase;
     color: var(--color-white);
 }
 

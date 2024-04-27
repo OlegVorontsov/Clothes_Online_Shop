@@ -44,10 +44,14 @@ namespace Clothes_Online_Shop.Controllers
             productsRepository.AddProduct(product);
             return RedirectToAction("Products");
         }
-        public IActionResult EditProduct()
+        public IActionResult EditProduct(int productId)
         {
-            //copu from addProduct
-            return View();
+            var existingProduct = productsRepository.TryGetById(productId);
+            if (existingProduct == null)
+            {
+                return RedirectToAction("Products");
+            }
+            return View(existingProduct);
         }
         [HttpPost]
         public IActionResult EditProduct(Product product)
