@@ -5,6 +5,7 @@ using System;
 
 namespace Clothes_Online_Shop.Controllers
 {
+    [Area("Admin")]
     public class AdminController : Controller
     {
         private readonly IProductsRepository productsRepository;
