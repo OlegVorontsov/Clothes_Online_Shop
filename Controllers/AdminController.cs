@@ -77,8 +77,6 @@ namespace Clothes_Online_Shop.Controllers
             return View(role);
         }
 
-
-
         public IActionResult Products()
         {
             var products = productsRepository.GetAll();
