@@ -43,8 +43,20 @@
                 </tbody>
             </table>
             <div class="text-center">
-                <button style="margin-right:20px" class="btn btn-secondary" type="submit" asp-controller="Admin" asp-action="UpdateOrderStatus">Обновить статус</button>
-                <a class="btn-danger btn" href="/admin/admin/deleteOrder?orderId=@Model.Id" role="button">Удалить</a>
+                <button style="margin-right:20px"
+                        class="btn btn-secondary"
+                        type="submit"
+                        asp-area="Admin"
+                        asp-controller="Order"
+                        asp-action="UpdateStatus">Обновить статус
+                </button>
+                <a class="btn-danger btn"
+                   asp-area="Admin"
+                   asp-controller="Order"
+                   asp-action="Delete"
+                   asp-route-orderId="@Model.Id"
+                   role="button">Удалить
+                </a>
             </div>
         </div>
     </div>

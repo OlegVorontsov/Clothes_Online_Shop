@@ -12,17 +12,17 @@
             <div class="flex justify-content-between">
                 <label asp-for="Email">Введите ваш e-mail</label>
                 <span asp-validation-for="Email"></span>
-                <input style="min-width:100%" asp-for="Email" placeholder="e-mail*" />
+                <input class="input-reset" style="min-width:100%" asp-for="Email" placeholder="e-mail*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="Password">Введите ваш пароль</label>
                 <span asp-validation-for="Password"></span>
-                <input style="min-width:100%" type="password" asp-for="Password" placeholder="пароль*" />
+                <input class="input-reset" style="min-width:100%" type="password" asp-for="Password" placeholder="пароль*" />
             </div>
             <div class="flex justify-content-between">
                 <label asp-for="ConfirmPassword">Подтвердите ваш пароль</label>
                 <span asp-validation-for="ConfirmPassword"></span>
-                <input style="min-width:100%" type="password" asp-for="ConfirmPassword" placeholder="подтвердите пароль*" />
+                <input class="input-reset" style="min-width:100%" type="password" asp-for="ConfirmPassword" placeholder="подтвердите пароль*" />
             </div>
             <button style="min-width:100%" class="btn btn-secondary" type="submit" asp-controller="Account" asp-action="Register">ЗАРЕГИСТРИРОВАТЬСЯ</button>
         </form>

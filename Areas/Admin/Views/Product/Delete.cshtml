@@ -31,8 +31,20 @@
                 </tbody>
             </table>
             <div class="text-center">
-                <a style="margin-right: 20px" class="btn-secondary btn" href="/admin/admin/products" role="button">Отменить</a>
-                <a class="btn-danger btn" href="/admin/admin/deleteProduct?productId=@Model.Id" role="button">Удалить</a>
+                <a style="margin-right: 20px"
+                   class="btn-secondary btn"
+                   asp-area="Admin"
+                   asp-controller="Product"
+                   asp-action="Index"
+                   role="button">Отменить
+                </a>
+                <a class="btn-danger btn"
+                   asp-area="Admin"
+                   asp-controller="Product"
+                   asp-action="DeleteProduct"
+                   asp-route-productId="@Model.Id"
+                   role="button">Удалить
+                </a>
             </div>
         </form>
     </div>

@@ -59,7 +59,13 @@
                 <span class="text-danger" asp-validation-for="Description"></span>
                 <input class="input-reset" asp-for="Description" placeholder="описание*" />
             </div>
-            <button style="min-width:100%" class="btn btn-secondary" type="submit" asp-controller="Admin" asp-action="AddProduct">Добавить</button>
+            <button style="min-width:100%"
+                    class="btn btn-secondary"
+                    type="submit"
+                    asp-area="Admin"
+                    asp-controller="Product"
+                    asp-action="Add">Добавить
+            </button>
         </form>
     </div>
 </div>

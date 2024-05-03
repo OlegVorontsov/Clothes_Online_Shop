@@ -14,7 +14,13 @@
                 <span class="text-danger" asp-validation-for="Name"></span>
                 <input class="input-reset" asp-for="Name" placeholder="название*" />
             </div>
-            <button style="min-width:100%" class="btn btn-secondary" type="submit" asp-controller="Admin" asp-action="AddRole">Добавить</button>
+            <button style="min-width:100%"
+                    class="btn btn-secondary"
+                    type="submit"
+                    asp-area="Admin"
+                    asp-controller="Role"
+                    asp-action="Add">Добавить
+            </button>
         </form>
     </div>
 </div>

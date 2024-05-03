@@ -38,16 +38,33 @@
                             <strong>@item.Cost ₽</strong>
                         </td>
                         <td>
-                            <a class= "btn-secondary btn" href="/admin/admin/editProduct?productId=@item.Id" role="button">Изменить</a>
+                            <a class= "btn-secondary btn"
+                               asp-area="Admin"
+                               asp-controller="Product"
+                               asp-action="Edit"
+                               asp-route-productId="@item.Id"
+                               role="button">Изменить
+                            </a>
                         </td>
                         <td>
-                            <a class="btn-danger btn" href="/admin/admin/delete?productId=@item.Id" role="button">Удалить</a>
+                            <a class="btn-danger btn"
+                               asp-area="Admin"
+                               asp-controller="Product"
+                               asp-action="Delete"
+                               asp-route-productId="@item.Id"
+                               role="button">Удалить
+                            </a>
                         </td>
                     </tr>
                     }
                 </tbody>
             </table>
         }
-        <a class="btn btn-secondary" href="/admin/admin/addProduct" role="button">Добавить продукт</a>
+        <a class="btn btn-secondary"
+           asp-area="Admin"
+           asp-controller="Product"
+           asp-action="Add"
+           role="button">Добавить продукт
+        </a>
     </div>
 </div>
