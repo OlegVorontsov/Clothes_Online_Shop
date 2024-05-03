@@ -300,3 +300,125 @@ a {
     line-height: 1;
     color: red;
 }
+
+/* making order modal window */
+
+.modal-content {
+    padding: 50px;
+    background-color: var(--color-white);
+    border: unset;
+    border-radius: unset;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.modal-title {
+    text-align: center;
+    margin: 0;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--color-dark);
+}
+
+.modal-text {
+    margin: 0;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    text-align: center;
+    color: var(--color-default);
+}
+
+.modal-form {
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.modal-btn {
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 350px;
+    margin-bottom: 20px;
+}
+
+.modal-checkbox {
+    margin-bottom:30px;
+    max-width:290px;
+    user-select: none;
+    cursor: pointer;
+}
+
+.modal-checkbox-input {
+    display: none;
+    position: absolute;
+}
+
+.modal-checkbox-text {
+    position: relative;
+    padding-left: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    color: var(--color-default);
+}
+
+.modal-checkbox-text::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%; /* квадратик ровно по вертикали */
+    transform: translateY(-50%); /* квадратик ровно по вертикали */
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--color-default);
+}
+
+.modal-checkbox-text::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    background-image: url('/img/footer-checkbox.svg');
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.3s linear;
+}
+
+.modal-checkbox-input:checked + .modal-checkbox-text::after { /* через + добрались до соседнего класса */
+    opacity: 1;
+}
+
+.modal-checkbox-input:focus + .modal-checkbox-text {
+    outline: 2px solid var(--color-default);
+    outline-offset: 5px;
+}
+
+.modal-checkbox-input:hover + .modal-checkbox-text {
+    outline: none;
+    color: var(--color-default);
+}
+
+.modal-checkbox-input:active + .modal-checkbox-text {
+    color: var(--color-active);
+}
+
+.modal-pay {
+    display: flex;
+    justify-content: space-between;
+}

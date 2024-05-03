@@ -30,25 +30,40 @@
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title fs-5 text-center" id="exampleModalLabel">Оформить заказ</h3>
-                        <button type="button" class="btn" data-dismiss="modal" aria-label="Закрыть">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M14.545 1.45459L1.4541 14.5455" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
-                                <path d="M14.545 14.5455L1.4541 1.45459" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
-                            </svg>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p class="text-center">Мы обязательно свяжемся с Вами для уточнения деталей заказа</p>
-                        <form id="request" method="post">
-                            <input type="hidden" id="modal-name" name="name" value="" />
-                            <input type="hidden" id="modal-email" name="email" value="" />
-                            <input type="hidden" id="modal-phone" name="phone" value="" />
-                            <button class="btn btn-secondary" type="submit" asp-controller="Order" asp-action="Buy">Оформить заказ</button>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
+                    <button type="button" class="btn-reset modal-close-btn" data-dismiss="modal" aria-label="Закрыть">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14.545 1.45459L1.4541 14.5455" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                            <path d="M14.545 14.5455L1.4541 1.45459" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <h3 class="modal-title" id="exampleModalLabel">Оформить заказ</h3>
+                    <p class="modal-text">Мы обязательно свяжемся с Вами для уточнения деталей заказа</p>
+                    <form class="modal-form" id="request" method="post">
+                        <input type="hidden" id="modal-name" name="name" value="" />
+                        <input type="hidden" id="modal-email" name="email" value="" />
+                        <input type="hidden" id="modal-phone" name="phone" value="" />
+                        <button class="btn btn-secondary modal-btn" type="submit" asp-controller="Order" asp-action="Buy">Оформить заказ</button>
+                        <label class="modal-checkbox">
+                            <input class="modal-checkbox-input" type="checkbox" required>
+                            <p class="modal-checkbox-text">Согласен с условиями Правил пользования и Правилами возврата</p>
+                        </label>
+                    </form>
+                    <div class="modal-pay">
+                        <a href="#" class="modal-pay-logo">
+                            <img src="/img/modal-pay-logo-1.svg" alt="apple pay logo">
+                        </a>
+                        <a href="#" class="modal-pay-logo">
+                            <img src="/img/modal-pay-logo-2.svg" alt="google pay logo">
+                        </a>
+                        <a href="#" class="modal-pay-logo">
+                            <img src="/img/modal-pay-logo-3.svg" alt="mastercard logo">
+                        </a>
+                        <a href="#" class="modal-pay-logo">
+                            <img src="/img/modal-pay-logo-4.svg" alt="mir logo">
+                        </a>
+                        <a href="#" class="modal-pay-logo">
+                            <img src="/img/modal-pay-logo-5.svg" alt="visa logo">
+                        </a>
                     </div>
                 </div>
             </div>
