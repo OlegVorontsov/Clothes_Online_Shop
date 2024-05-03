@@ -7,27 +7,60 @@
 <div class="row">
     <div class="col-5">
         <h3>Информация о клиенте</h3>
-        <form id="request" method="post">
-            <p>Ваше имя</p>
-            <p>Имя получателя заказа</p>
-            <input type="text" name="name" placeholder="Ваше имя" required>
-            <p>E-mail</p>
-            <p>Для отправки деталей заказа, статуса производства и доставки</p>
-            <input type="email" name="email" placeholder="Введите e-mail" required>
-            <p>Телефон</p>
-            <p>Чтобы мы могли связаться для уточнения деталей доставки или заказанного товара</p>
-            <input type="tel" name="phone" placeholder="Введите телефон" required>
-            <h3>Информация о доставке</h3>
-            <p>
-                Бесплатная доставка при заказе от 3 000 руб. Вы можете выбрать подходящий для вас способ доставки товара:
-            </p>
-            <div>
-                <p>Курьерская доставка. Срок – от 1 дня.</p>
-                <p>Пункты выдачи заказов и постаматы. Срок – от 1 дня.</p>
-                <p>Самовывозом из магазина. Срок – от 1 дня.</p>
+        <p>Ваше имя</p>
+        <p>Имя получателя заказа</p>
+        <input id="name" type="text" name="name" placeholder="Ваше имя" required>
+        <p>E-mail</p>
+        <p>Для отправки деталей заказа, статуса производства и доставки</p>
+        <input id="email" type="email" name="email" placeholder="Введите e-mail" required>
+        <p>Телефон</p>
+        <p>Чтобы мы могли связаться для уточнения деталей доставки или заказанного товара</p>
+        <input id="phone" type="tel" name="phone" placeholder="Введите телефон" required>
+        <h3>Информация о доставке</h3>
+        <p>
+            Бесплатная доставка при заказе от 3 000 руб. Вы можете выбрать подходящий для вас способ доставки товара:
+        </p>
+        <div>
+            <p>Курьерская доставка. Срок – от 1 дня.</p>
+            <p>Пункты выдачи заказов и постаматы. Срок – от 1 дня.</p>
+            <p>Самовывозом из магазина. Срок – от 1 дня.</p>
+        </div>
+        <button type="button" class="btn btn-secondary" id="modalButton" data-toggle="modal" data-target="#exampleModal">Оформить заказ</button>
+        <!-- Модальное окно -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title fs-5 text-center" id="exampleModalLabel">Оформить заказ</h3>
+                        <button type="button" class="btn" data-dismiss="modal" aria-label="Закрыть">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14.545 1.45459L1.4541 14.5455" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                                <path d="M14.545 14.5455L1.4541 1.45459" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-center">Мы обязательно свяжемся с Вами для уточнения деталей заказа</p>
+                        <form id="request" method="post">
+                            <input type="hidden" id="modal-name" name="name" value="" />
+                            <input type="hidden" id="modal-email" name="email" value="" />
+                            <input type="hidden" id="modal-phone" name="phone" value="" />
+                            <button class="btn btn-secondary" type="submit" asp-controller="Order" asp-action="Buy">Оформить заказ</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
             </div>
-            <button class="btn btn-secondary" type="submit" asp-controller="Order" asp-action="Index">Оформить заказ</button>
-        </form>
+        </div>
+        <script>
+            $('#modalButton').click(function () {
+                $('#modal-name').val($('#name').val());
+                $('#modal-email').val($('#email').val());
+                $('#modal-phone').val($('#phone').val());
+            });
+        </script>
+        <!-- Модальное окно -->
     </div>
     <div class="col-7">
         @if (Model == null || Model.ItemsCount == 0)
@@ -86,6 +119,5 @@
         }
     </div>
 </div>
-
 
 

@@ -1,7 +1,6 @@
 ﻿using Clothes_Online_Shop.Data;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace Clothes_Online_Shop.Controllers
 {
@@ -15,12 +14,8 @@ namespace Clothes_Online_Shop.Controllers
             this.cartsRepository = cartsRepository;
             this.ordersRepository = ordersRepository;
         }
-        [HttpPost]
-        public IActionResult Index(UserDeliveryInfo userInfo)
-        {
-            return View(userInfo);
-        }
 
+        [HttpPost]
         public IActionResult Buy(UserDeliveryInfo userInfo)
         {
             if (!ModelState.IsValid)
