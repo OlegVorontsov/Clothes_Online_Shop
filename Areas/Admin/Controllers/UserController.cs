@@ -1,4 +1,5 @@
 ﻿using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clothes_Online_Shop.Areas.Admin.Controllers
@@ -16,6 +17,28 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
         public IActionResult Index()
         {
             return View(usersManager.GetAll());
+        }
+        public IActionResult ChangePassword(string userName)
+        {
+            var changePassword = new ChangePassword()
+            {
+                UserName = userName
+            };
+            return View(changePassword);
+        }
+        [HttpPost]
+        public IActionResult ChangePassword(ChangePassword changePassword)
+        {
+            if (changePassword.UserName == changePassword.Password)
+            {
+                ModelState.AddModelError("", "e-mail и пароль не должны совпадать");
+            }
+            if (ModelState.IsValid)
+            {
+                usersManager.ChangePassword(changePassword.UserName, changePassword.Password);
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(ChangePassword));
         }
         public IActionResult Remove(string userName)
         {

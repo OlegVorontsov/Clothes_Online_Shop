@@ -9,6 +9,7 @@ namespace Clothes_Online_Shop.Data
         void AddUser(UserAccount user);
         List<UserAccount> GetAll();
         UserAccount TryGetByName(string userName);
+        void ChangePassword(string userName, string newPassword);
         void Remove(string userName);
     }
 }

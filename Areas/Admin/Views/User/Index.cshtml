@@ -25,20 +25,50 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>@item.Name</td>
-                            <td>@item.Phone</td>
-                            <td>
-                                <a class="btn-danger btn"
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Phone</td>
+                        <td>
+                            <button class="btn btn-secondary"
+                                    type="button"
+                                    id="dropDownMenuButton"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                Действия
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropDownMenuButton">
+                                <a class="dropdown-item"
+                                   asp-area="Admin"
+                                   asp-controller="User"
+                                   asp-action="ChangePassword"
+                                   asp-route-userName="@item.Name">
+                                    Изменить пароль
+                                </a>
+                                <a class="dropdown-item"
+                                   asp-area="Admin"
+                                   asp-controller="User"
+                                   asp-action="Edit"
+                                   asp-route-userName="@item.Name">
+                                    Редактировать
+                                </a>
+                                <a class="dropdown-item"
+                                   asp-area="Admin"
+                                   asp-controller="User"
+                                   asp-action="ChangeRole"
+                                   asp-route-userName="@item.Name">
+                                    Изменить права
+                                </a>
+                                <a class="dropdown-item text-red"
                                    asp-area="Admin"
                                    asp-controller="User"
                                    asp-action="Remove"
-                                   asp-route-userName="@item.Name"
-                                   role="button">
+                                   asp-route-userName="@item.Name">
                                     Удалить
                                 </a>
-                            </td>
-                        </tr>
+                            </div>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

@@ -35,8 +35,11 @@ a {
     outline: none;
 }
 
-/*resets*/
+.text-red {
+    color: var(--color-red);
+}
 
+/*resets*/
 .table td,
 .table th {
     vertical-align: unset;
