@@ -19,5 +19,10 @@ namespace Clothes_Online_Shop.Data
         {
             return users.FirstOrDefault(u => u.Name == userName);
         }
+
+        public void Remove(string userName)
+        {
+            users.RemoveAll(u => u.Name == userName);
+        }
     }
 }

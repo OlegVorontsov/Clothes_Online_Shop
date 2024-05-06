@@ -15,6 +15,11 @@
                 <input class="input-reset" style="min-width:100%" asp-for="Email" placeholder="e-mail*" />
             </div>
             <div class="flex justify-content-between">
+                <label asp-for="Phone">Введите ваш телефон</label>
+                <span asp-validation-for="Phone"></span>
+                <input class="input-reset" style="min-width:100%" asp-for="Phone" placeholder="phone*" />
+            </div>
+            <div class="flex justify-content-between">
                 <label asp-for="Password">Введите ваш пароль</label>
                 <span asp-validation-for="Password"></span>
                 <input class="input-reset" style="min-width:100%" type="password" asp-for="Password" placeholder="пароль*" />

@@ -7,6 +7,9 @@ namespace Clothes_Online_Shop.Models
         [Required(ErrorMessage = "Введите e-mail")]
         [EmailAddress(ErrorMessage = "Введите корректный e-mail")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Введите телефон")]
+        [Phone(ErrorMessage = "Введите корректный телефон")]
+        public string Phone { get; set; }
 
         [Required(ErrorMessage = "Введите пароль")]
         public string Password { get; set; }

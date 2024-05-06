@@ -55,6 +55,7 @@ namespace Clothes_Online_Shop.Controllers
                 usersManager.AddUser(new UserAccount
                 {
                     Name = registerInfo.Email,
+                    Phone = registerInfo.Phone,
                     Password = registerInfo.Password
                 });
                 return RedirectToAction(nameof(HomeController.Index), "Home");

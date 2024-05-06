@@ -16,8 +16,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            var roles = rolesRepository.GetAll();
-            return View(roles);
+            return View(rolesRepository.GetAll());
         }
         public IActionResult Remove(string roleName)
         {
