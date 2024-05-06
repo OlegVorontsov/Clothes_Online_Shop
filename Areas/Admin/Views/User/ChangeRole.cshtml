@@ -1,0 +1,27 @@
+﻿@model ChangeRole
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <h3 class="text-center">Изменение прав у пользователя @Model.UserName</h3>
+        <form id="request" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <input type="hidden" name="userName" value="@Model.UserName"/>
+            <div class="flex justify-content-between">
+                <label asp-for="RoleName">Введите название прав</label>
+                <span class="text-danger" asp-validation-for="RoleName"></span>
+                <input class="input-reset" asp-for="RoleName" value="@Model.RoleName" placeholder="название прав*" />
+            </div>
+            <button style="min-width:100%"
+                    class="btn btn-secondary"
+                    type="submit"
+                    asp-area="Admin"
+                    asp-controller="User"
+                    asp-action="ChangeRole">Сохранить
+            </button>
+        </form>
+    </div>
+</div>

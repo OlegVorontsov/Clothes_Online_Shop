@@ -17,6 +17,7 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Права</th>
                         <th>Логин</th>
                         <th>Телефон</th>
                         <th></th>
@@ -26,6 +27,7 @@
                     @foreach (var item in Model)
                     {
                     <tr>
+                        <td>@item.Role.Name</td>
                         <td>@item.Name</td>
                         <td>@item.Phone</td>
                         <td>

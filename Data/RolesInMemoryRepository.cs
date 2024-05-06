@@ -7,7 +7,10 @@ namespace Clothes_Online_Shop.Data
 {
     public class RolesInMemoryRepository : IRolesRepository
     {
-        private readonly List<Role> roles = new List<Role>();
+        private readonly List<Role> roles = new List<Role>()
+        {
+            new Role() {Name = "User"}
+        };
         public void AddRole(Role role)
         {
             roles.Add(role);
@@ -20,7 +23,10 @@ namespace Clothes_Online_Shop.Data
         {
             return roles.FirstOrDefault(r => r.Name == name);
         }
-
+        public Role GetUserRole()
+        {
+            return roles[0];
+        }
         public void Remove(string name)
         {
             roles.RemoveAll(r => r.Name == name);

@@ -7,10 +7,12 @@ namespace Clothes_Online_Shop.Controllers
     public class AccountController : Controller
     {
         private readonly IUsersManager usersManager;
+        private readonly IRolesRepository rolesRepository;
 
-        public AccountController(IUsersManager usersManager)
+        public AccountController(IUsersManager usersManager, IRolesRepository rolesRepository)
         {
             this.usersManager = usersManager;
+            this.rolesRepository = rolesRepository;
         }
 
         public IActionResult Login()
@@ -56,7 +58,8 @@ namespace Clothes_Online_Shop.Controllers
                 {
                     Name = registerInfo.Email,
                     Phone = registerInfo.Phone,
-                    Password = registerInfo.Password
+                    Password = registerInfo.Password,
+                    Role = rolesRepository.GetUserRole()
                 });
                 return RedirectToAction(nameof(HomeController.Index), "Home");
             }

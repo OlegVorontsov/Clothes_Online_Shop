@@ -10,6 +10,7 @@ namespace Clothes_Online_Shop.Data
         void AddRole(Role role);
         List<Role> GetAll();
         Role TryGetByName(string name);
+        Role GetUserRole();
         void Remove(string name);
     }
 }

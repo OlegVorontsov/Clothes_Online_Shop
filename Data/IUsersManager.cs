@@ -1,6 +1,6 @@
-﻿using Clothes_Online_Shop.Models;
+﻿using Clothes_Online_Shop.Areas.Admin.Models;
+using Clothes_Online_Shop.Models;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Clothes_Online_Shop.Data
 {
@@ -10,6 +10,7 @@ namespace Clothes_Online_Shop.Data
         List<UserAccount> GetAll();
         UserAccount TryGetByName(string userName);
         void ChangePassword(string userName, string newPassword);
+        public void ChangeRole(string userName, Role newRole);
         void Remove(string userName);
     }
 }

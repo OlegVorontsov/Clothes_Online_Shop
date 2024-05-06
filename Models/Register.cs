@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Clothes_Online_Shop.Areas.Admin.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace Clothes_Online_Shop.Models
 {
@@ -17,5 +18,6 @@ namespace Clothes_Online_Shop.Models
         [Required(ErrorMessage = "Повторите пароль")]
         [Compare("Password", ErrorMessage ="Пароли не совпадают")]
         public string ConfirmPassword { get; set; }
+        public Role Role { get; set; }
     }
 }
