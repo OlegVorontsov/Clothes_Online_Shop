@@ -1,10 +1,18 @@
-﻿using Clothes_Online_Shop.Models;
+﻿using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clothes_Online_Shop.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly IUsersManager usersManager;
+
+        public AccountController(IUsersManager usersManager)
+        {
+            this.usersManager = usersManager;
+        }
+
         public IActionResult Login()
         {
             return View();
@@ -12,15 +20,24 @@ namespace Clothes_Online_Shop.Controllers
         [HttpPost]
         public IActionResult Login(Login loginInfo)
         {
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction(nameof(Login));
+            }
             if (loginInfo.Email == loginInfo.Password)
             {
                 ModelState.AddModelError("", "e-mail и пароль не должны совпадать");
             }
-            if (ModelState.IsValid)
+            var userAccount = usersManager.TryGetByName(loginInfo.Email);
+            if (userAccount == null)
             {
-                return RedirectToAction("Index", "Home");
+                ModelState.AddModelError("", $"Пользователь {loginInfo.Email} не найден");
             }
-            return RedirectToAction("Login");
+            if (userAccount.Password != loginInfo.Password)
+            {
+                ModelState.AddModelError("", $"Неверный пароль");
+            }
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
         public IActionResult Register()
         {
@@ -35,9 +52,14 @@ namespace Clothes_Online_Shop.Controllers
             }
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                usersManager.AddUser(new UserAccount
+                {
+                    Name = registerInfo.Email,
+                    Password = registerInfo.Password
+                });
+                return RedirectToAction(nameof(HomeController.Index), "Home");
             }
-            return RedirectToAction("Register");
+            return RedirectToAction(nameof(Register));
         }
     }
 }

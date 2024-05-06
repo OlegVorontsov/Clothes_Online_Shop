@@ -24,6 +24,7 @@ namespace Clothes_Online_Shop
             services.AddSingleton<ICartsRepository, CartsInMemoryRepository>();
             services.AddSingleton<IOrdersRepository, OrdersInMemoryRepository>();
             services.AddSingleton<IRolesRepository, RolesInMemoryRepository>();
+            services.AddSingleton<IUsersManager, UsersManager>();
             services.AddControllersWithViews();
 
             services.Configure<RequestLocalizationOptions>(options =>
