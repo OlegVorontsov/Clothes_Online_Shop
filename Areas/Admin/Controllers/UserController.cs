@@ -69,7 +69,24 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(ChangeRole));
         }
-
+        public IActionResult Edit(string userName)
+        {
+            var changeUser = new ChangeUser()
+            {
+                UserName = userName
+            };
+            return View(changeUser);
+        }
+        [HttpPost]
+        public IActionResult Edit(ChangeUser changeUser)
+        {
+            if (ModelState.IsValid)
+            {
+                usersManager.Update(changeUser);
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Edit));
+        }
         public IActionResult Remove(string userName)
         {
             usersManager.Remove(userName);

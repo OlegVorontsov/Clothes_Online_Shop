@@ -30,6 +30,16 @@ namespace Clothes_Online_Shop.Data
             var account = TryGetByName(userName);
             account.Role = newRole;
         }
+        public void Update(ChangeUser changeUser)
+        {
+            var account = TryGetByName(changeUser.UserName);
+            if (account == null)
+            {
+                return;
+            }
+            account.Name = changeUser.Email;
+            account.Phone = changeUser.Phone; 
+        }
         public void Remove(string userName)
         {
             users.RemoveAll(u => u.Name == userName);

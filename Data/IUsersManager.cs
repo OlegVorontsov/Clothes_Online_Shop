@@ -11,6 +11,7 @@ namespace Clothes_Online_Shop.Data
         UserAccount TryGetByName(string userName);
         void ChangePassword(string userName, string newPassword);
         public void ChangeRole(string userName, Role newRole);
+        public void Update(ChangeUser changeUser);
         void Remove(string userName);
     }
 }

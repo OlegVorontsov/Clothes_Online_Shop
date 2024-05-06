@@ -50,7 +50,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 return View(product);
             }
             productsRepository.Update(product);
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         public IActionResult Delete(int productId)
         {

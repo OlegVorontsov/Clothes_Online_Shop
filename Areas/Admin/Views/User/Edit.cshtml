@@ -1,0 +1,33 @@
+﻿@model ChangeUser
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row justify-content-center">
+    <div class="col-4">
+        <h3 class="text-center">Редактирование пользователя @Model.UserName</h3>
+        <form id="request" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <input type="hidden" name="userName" value="@Model.UserName" />
+            <div class="flex justify-content-between">
+                <label asp-for="Email">Введите новый e-mail</label>
+                <span asp-validation-for="Email"></span>
+                <input class="input-reset" style="min-width:100%" asp-for="Email" placeholder="e-mail*" />
+            </div>
+            <div class="flex justify-content-between">
+                <label asp-for="Phone">Введите новый телефон</label>
+                <span asp-validation-for="Phone"></span>
+                <input class="input-reset" style="min-width:100%" asp-for="Phone" placeholder="phone*" />
+            </div>
+            <button style="min-width:100%"
+                    class="btn btn-secondary"
+                    type="submit"
+                    asp-area="Admin"
+                    asp-controller="User"
+                    asp-action="Edit">
+                Сохранить
+            </button>
+        </form>
+    </div>
+</div>
