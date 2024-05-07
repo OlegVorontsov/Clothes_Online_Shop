@@ -7,13 +7,13 @@
 <div class="row">
     @await Html.PartialAsync("AdminLeft")
     <div class="col-10">
-        <h4>Продукты</h4>
         @if (Model == null || Model.Count == 0)
         {
-            <h3>Товаров нет</h3>
+            <h4>Товаров нет</h4>
         }
         else
         {
+            <h4>Товары</h4>
             <table class="table">
                 <thead>
                     <tr>
@@ -29,33 +29,35 @@
                 <tbody>
                     @foreach (var item in Model)
                     {
-                    <tr>
-                        <td>@item.Item</td>
-                        <td>@item.Name</td>
-                        <td>@item.Color</td>
-                        <td>@item.Size</td>
-                        <td>
-                            <strong>@item.Cost ₽</strong>
-                        </td>
-                        <td>
-                            <a class= "btn-secondary btn"
-                               asp-area="Admin"
-                               asp-controller="Product"
-                               asp-action="Edit"
-                               asp-route-productId="@item.Id"
-                               role="button">Изменить
-                            </a>
-                        </td>
-                        <td>
-                            <a class="btn-danger btn"
-                               asp-area="Admin"
-                               asp-controller="Product"
-                               asp-action="Delete"
-                               asp-route-productId="@item.Id"
-                               role="button">Удалить
-                            </a>
-                        </td>
-                    </tr>
+                        <tr>
+                            <td>@item.Item</td>
+                            <td>@item.Name</td>
+                            <td>@item.Color</td>
+                            <td>@item.Size</td>
+                            <td>
+                                <strong>@item.Cost ₽</strong>
+                            </td>
+                            <td>
+                                <a class="btn-secondary btn"
+                                   asp-area="Admin"
+                                   asp-controller="Product"
+                                   asp-action="Edit"
+                                   asp-route-productId="@item.Id"
+                                   role="button">
+                                    Изменить
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn-danger btn"
+                                   asp-area="Admin"
+                                   asp-controller="Product"
+                                   asp-action="Delete"
+                                   asp-route-productId="@item.Id"
+                                   role="button">
+                                    Удалить
+                                </a>
+                            </td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -64,7 +66,8 @@
            asp-area="Admin"
            asp-controller="Product"
            asp-action="Add"
-           role="button">Добавить продукт
+           role="button">
+            Добавить
         </a>
     </div>
 </div>

@@ -2,7 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <a class="link-reset" href="#">building Web apps with ASP.NET Core</a>
-    <button class="btn btn-secondary" asp-controller="Home" asp-action="Index">Оформить заказ</button>
+<div class="hero">
+    <div class="hero__content">
+        <div class="hero__images">
+            <div class="hero__img hero__img-1"></div>
+            <div class="hero__img hero__img-2"></div>
+            <div class="hero__img hero__img-3"></div>
+        </div>
+        <div class="hero__card">
+            <h2 class="hero__title">Spring mood</h2>
+            <h3 class="hero__text">-20% на новую коллекцию</h3>
+            <a class="btn btn-secondary hero-btn" asp-controller="Product" asp-action="Catalog" role="button">В каталог</a>
+        </div>
+    </div>
 </div>
