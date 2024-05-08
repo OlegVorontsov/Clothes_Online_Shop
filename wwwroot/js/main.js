@@ -1,5 +1,5 @@
 const heroSlider = new Splide('#heroSlider', {
-  perPage: 3,
+  perPage: 8,
   gap: '30px',
   pagination: false,
     arrows: false,
@@ -7,7 +7,7 @@ const heroSlider = new Splide('#heroSlider', {
     drag: 'free',
     focus: 'center',
     autoScroll: {
-        speed: -1,
+        speed: 1,
     },
 })
 
