@@ -153,6 +153,28 @@ a {
     color: var(--color-red);
 }
 
+.splide__pagination {
+    bottom: -1em;
+}
+
+.splide__pagination__page {
+    background: var(--color-default);
+}
+
+.splide__pagination__page.is-active {
+    background: var(--color-active);
+}
+
+.splide__arrow {
+    background: var(--color-default);
+    width: 40px;
+    height: 40px;
+}
+
+.splide__arrow:hover {
+    outline: none;
+}
+
 /* header */
 .header {
     max-height: 180px;
@@ -431,6 +453,10 @@ a {
 
 /* hero */
 
+.hero {
+    margin-bottom: 80px;
+}
+
 .hero__content {
     padding: 0 60px;
 }
@@ -584,6 +610,97 @@ a {
 .hero__splide-link:active .hero__splide-text {
     color: var(--color-dark);
 }
+
+/* popular */
+
+.popular__content {
+    padding: 0 60px;
+}
+
+.popular__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.section-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--color-dark);
+}
+
+.popular__top-link {
+    position: relative;
+    padding-right: 40px;
+}
+
+.popular__top-link::after {
+    position: absolute;
+    content: '';
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 16px;
+    background-image: url('/img/popular-arrow.svg');
+    background-position: center;
+    background-size: 90%;
+    background-repeat: no-repeat;
+    transition: right 0.3s ease-in-out;
+}
+
+.popular__top-link:hover::after {
+    right: 0;
+}
+
+.popular__splide-card {
+    max-width: 300px;
+}
+
+.popular__splide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.popular__splide-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.popular__splide-cost {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--color-dark);
+}
+
+.popular__splide-cart:hover .svg-path {
+    stroke: var(--color-light);
+}
+
+.popular__splide-cart:active .svg-path {
+    stroke: var(--color-dark);
+}
+
+.popular__splide-text {
+    margin: 0;
+    margin-bottom: 10px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--color-dark);
+}
+
+
+
+
 
 /* footer */
 .footer-reset {

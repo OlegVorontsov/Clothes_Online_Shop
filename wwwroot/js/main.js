@@ -11,5 +11,11 @@ const heroSlider = new Splide('#heroSlider', {
     },
 })
 
-heroSlider.mount(window.splide.Extensions)
+const popularSlider = new Splide('#popularSlider', {
+    perPage: 4,
+    gap: '30px',
+    pagination: true
+})
 
+heroSlider.mount(window.splide.Extensions)
+popularSlider.mount()

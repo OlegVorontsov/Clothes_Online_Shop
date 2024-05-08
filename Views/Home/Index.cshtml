@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Product>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -105,6 +107,46 @@
                             </a>
                         </div>
                     </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="popular">
+    <div class="popular__content">
+        <div class="popular__top">
+            <h3 class="section-title">Популярное</h3>
+            <a class="link-reset popular__top-link" asp-area="" asp-controller="Product" asp-action="Catalog">В каталог</a>
+        </div>
+        <div id="popularSlider" class="splide" role="group" aria-label="Splide Basic HTML Example">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    @foreach (var product in Model)
+                    {
+                        <li class="splide__slide">
+                            <div class="popular__splide-card">
+                                <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">
+                                    <img class="popular__splide-img" src="@product.ImgPath" />
+                                </a>
+                                <div class="popular__splide-price">
+                                    <span class="popular__splide-cost">@product.Cost ₽</span>
+                                    <a class="link-reset popular__splide-cart"
+                                       asp-area=""
+                                       asp-controller="Cart"
+                                       asp-action="Add"
+                                       asp-route-productId="@product.Id"
+                                       role="button">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path class="svg-path" d="M20.25 6.75H3.75C3.33579 6.75 3 7.08579 3 7.5V19.5C3 19.9142 3.33579 20.25 3.75 20.25H20.25C20.6642 20.25 21 19.9142 21 19.5V7.5C21 7.08579 20.6642 6.75 20.25 6.75Z" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path class="svg-path" d="M8.25 9.75V6.75C8.25 5.75544 8.64509 4.80161 9.34835 4.09835C10.0516 3.39509 11.0054 3 12 3C12.9946 3 13.9484 3.39509 14.6517 4.09835C15.3549 4.80161 15.75 5.75544 15.75 6.75V9.75" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </a>
+                                </div>
+                                <p class="popular__splide-text">@product.Brand</p>
+                                <p class="popular__splide-text">@product.Name</p>
+                            </div>
+                        </li>
+                    }
                 </ul>
             </div>
         </div>
