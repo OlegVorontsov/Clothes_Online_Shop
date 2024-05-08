@@ -437,6 +437,7 @@ a {
 .hero__images {
     display: flex;
     position: relative;
+    margin-bottom: 80px;
 }
 
 .hero__img {
@@ -520,7 +521,20 @@ a {
     right: 10px;
 }
 
+.hero__splide-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
+.hero__splide-text {
+    margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-dark);
+}
 
 
 
