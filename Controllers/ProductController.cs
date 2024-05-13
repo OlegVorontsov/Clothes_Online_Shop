@@ -1,9 +1,8 @@
-﻿using Clothes_Online_Shop.Data;
+﻿using Clothes_Online_Shop.DB.Data;
+using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Clothes_Online_Shop.Controllers
 {
@@ -18,10 +17,31 @@ namespace Clothes_Online_Shop.Controllers
 
         public IActionResult Catalog()
         {
-            return View(productsRepository.GetAll());
+            var productsDB = productsRepository.GetAll();
+            var products = new List<ProductViewModel>();
+            foreach (var productDB in productsDB)
+            {
+                var product = new ProductViewModel
+                {
+                    Name = productDB.Name,
+                    Item = productDB.Item,
+                    Cost = productDB.Cost,
+                    Size = productDB.Size,
+                    Color = productDB.Color,
+                    Care = productDB.Care,
+                    Fabric = productDB.Fabric,
+                    Brand = productDB.Brand,
+                    Country = productDB.Country,
+                    Description = productDB.Description,
+                    ImgPath = productDB.ImgPath,
+                    Like = productDB.Like
+                };
+                products.Add(product);
+            }
+            return View(products);
         }
 
-        public IActionResult Index(int id)
+        public IActionResult Index(Guid id)
         {
             var product = productsRepository.TryGetById(id);
             if (product == null)

@@ -1,7 +1,10 @@
 using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.DB;
+using Clothes_Online_Shop.DB.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -20,7 +23,10 @@ namespace Clothes_Online_Shop
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IProductsRepository, ProductsInMemoryRepository>();
+            services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(
+            Configuration.GetConnectionString("online_shop")));
+
+            services.AddTransient<IProductsRepository, ProductsDBRepository>();
             services.AddSingleton<ICartsRepository, CartsInMemoryRepository>();
             services.AddSingleton<IOrdersRepository, OrdersInMemoryRepository>();
             services.AddSingleton<IRolesRepository, RolesInMemoryRepository>();

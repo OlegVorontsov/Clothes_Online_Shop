@@ -15,7 +15,7 @@ namespace Clothes_Online_Shop.Data
             return carts.FirstOrDefault(x => x.UserId == userId);
         }
 
-        public void Add(Product product, string userId)
+        public void Add(ProductViewModel product, string userId)
         {
             var existingCart = TryGetByUserId(userId);
             if (existingCart == null)
@@ -55,7 +55,7 @@ namespace Clothes_Online_Shop.Data
             }
         }
         //уменьшение кол-ва позиции в корзине
-        public void DecreaseAmount(int productId, string userId)
+        public void DecreaseAmount(Guid productId, string userId)
         {
             var existingCart = TryGetByUserId(userId);
             var existingCartItem = existingCart?.Items?.FirstOrDefault(x => x.Product.Id == productId);
@@ -70,7 +70,7 @@ namespace Clothes_Online_Shop.Data
             }
         }
         //удаление позиции из корзине
-        public void DeleteItem(int productId, string userId)
+        public void DeleteItem(Guid productId, string userId)
         {
             var existingCart = TryGetByUserId(userId);
             var existingCartItem = existingCart?.Items?.FirstOrDefault(x => x.Product.Id == productId);
