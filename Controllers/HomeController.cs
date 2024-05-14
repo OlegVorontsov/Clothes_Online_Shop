@@ -22,6 +22,7 @@ namespace Clothes_Online_Shop.Controllers
             {
                 var product = new ProductViewModel
                 {
+                    Id = productDB.Id,
                     Name = productDB.Name,
                     Item = productDB.Item,
                     Cost = productDB.Cost,

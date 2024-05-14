@@ -27,6 +27,7 @@ namespace Clothes_Online_Shop.Controllers
             var productDB = productsRepository.TryGetById(productId);
             var product = new ProductViewModel
             {
+                Id = productDB.Id,
                 Name = productDB.Name,
                 Item = productDB.Item,
                 Cost = productDB.Cost,

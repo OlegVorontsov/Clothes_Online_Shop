@@ -743,7 +743,7 @@ a {
     margin-bottom: 30px;
 }
 
-/* actual */
+/* sale */
 
 .sale {
     margin-bottom: 80px;
@@ -832,9 +832,37 @@ a {
     fill: var(--color-light);
 }
 
+/* sale */
 
+.news {
+    margin-bottom: 80px;
+}
 
+.news__content {
+    padding: 0 60px;
+}
 
+.news__img {
+    margin-bottom: 20px;
+}
+
+.news__title {
+    margin: 0;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--color-dark);
+}
+
+.news__text {
+    margin: 0;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--color-default);
+}
 
 /* footer */
 .footer-reset {
