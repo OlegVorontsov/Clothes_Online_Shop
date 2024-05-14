@@ -106,6 +106,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             }
             var productDB = new Product
             {
+                Id = product.Id,
                 Name = product.Name,
                 Item = product.Item,
                 Cost = product.Cost,

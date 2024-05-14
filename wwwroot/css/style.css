@@ -126,6 +126,11 @@ a {
     background-color: #e4ecf5;
 }
 
+.card-img-top {
+    border-top-left-radius: unset;
+    border-top-right-radius: unset;
+}
+
 /* glob */
 
 .container {
@@ -613,6 +618,10 @@ a {
 
 /* popular */
 
+.popular {
+    margin-bottom: 80px;
+}
+
 .popular__content {
     padding: 0 60px;
 }
@@ -696,6 +705,131 @@ a {
     font-size: 14px;
     line-height: 1;
     color: var(--color-dark);
+}
+
+/* actual */
+
+.actual {
+    margin-bottom: 80px;
+}
+
+.actual__content {
+    padding: 0 60px;
+}
+
+.actual__img {
+    margin-bottom: 20px;
+}
+
+.actual__title {
+    margin: 0;
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--color-dark);
+}
+
+.actual__text {
+    margin: 0;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--color-default);
+}
+
+.actual__text-mb {
+    margin-bottom: 30px;
+}
+
+/* actual */
+
+.sale {
+    margin-bottom: 80px;
+    background-color: #ffc803;
+}
+
+.sale__content {
+    padding: 66px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sale__title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 40px;
+    line-height: 1;
+    color: var(--color-white);
+}
+
+.sale__form {
+    position: relative;
+}
+
+.sale__form-input {
+    height: 50px;
+    min-width: 550px;
+    padding-left: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--color-default);
+    border: none;
+    border-radius: 50px;
+    background-color: var(--color-white);
+    color: var(--color-grey);
+    transition-property: background-color, color;
+    transition-duration: 0.3s, 0.3s;
+    transition-timing-function: ease-in-out, ease-in-out;
+}
+
+.sale__form-input:focus,
+.sale__form-input:hover {
+    outline: none;
+    background-color: #e4ecf5;
+}
+
+.sale__form-input:active {
+    outline: none;
+    color: var(--color-white);
+    background-color: #e4ecf5;
+}
+
+.sale__form-btn {
+    position: absolute;
+    height: 50px;
+    right: 0;
+}
+
+.sale__social-list {
+    display: flex;
+    gap: 20px;
+}
+
+.sale__social-link {
+    display: block;
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.sale__social-link:focus {
+    outline: none;
+}
+
+.sale__social-link:focus .sale__social-fill {
+    fill: #e4ecf5;
+}
+
+.sale__social-link:hover .sale__social-fill {
+    fill: #e4ecf5;
+}
+
+.sale__social-link:active .sale__social-fill {
+    fill: var(--color-light);
 }
 
 
