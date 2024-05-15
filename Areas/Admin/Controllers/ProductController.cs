@@ -36,7 +36,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                     Brand = productDB.Brand,
                     Country = productDB.Country,
                     Description = productDB.Description,
-                    ImgPath = productDB.ImgPath,
+                    ImgList = productDB.ImgList,
                     Like = productDB.Like
                 };
                 products.Add(product);
@@ -66,7 +66,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 Brand = product.Brand,
                 Country = product.Country,
                 Description = product.Description,
-                ImgPath = product.ImgPath,
+                ImgList = product.ImgList,
                 Like = product.Like
             };
             productsRepository.AddProduct(productDB);
@@ -92,7 +92,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 Brand = productDB.Brand,
                 Country = productDB.Country,
                 Description = productDB.Description,
-                ImgPath = productDB.ImgPath,
+                ImgList = productDB.ImgList,
                 Like = productDB.Like
             };
             return View(product);
@@ -117,7 +117,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 Brand = product.Brand,
                 Country = product.Country,
                 Description = product.Description,
-                ImgPath = product.ImgPath,
+                ImgList = product.ImgList,
                 Like = product.Like
             };
             productsRepository.Update(productDB);
@@ -143,7 +143,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 Brand = productDB.Brand,
                 Country = productDB.Country,
                 Description = productDB.Description,
-                ImgPath = productDB.ImgPath,
+                ImgList = productDB.ImgList,
                 Like = productDB.Like
             };
             return View(product);

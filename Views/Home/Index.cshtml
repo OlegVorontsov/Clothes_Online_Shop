@@ -138,7 +138,7 @@
                         <li class="splide__slide">
                             <div class="popular__splide-card">
                                 <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">
-                                    <img class="popular__splide-img" src="@product.ImgPath" />
+                                    <img class="popular__splide-img" src="@product.ImgList.FirstOrDefault()" />
                                 </a>
                                 <div class="popular__splide-price">
                                     <span class="popular__splide-cost">@product.Cost ₽</span>

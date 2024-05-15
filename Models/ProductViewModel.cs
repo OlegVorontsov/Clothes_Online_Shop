@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Clothes_Online_Shop.DB.Models;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Clothes_Online_Shop.Models
@@ -28,7 +30,11 @@ namespace Clothes_Online_Shop.Models
         public string Country { get; set; }
         [Required(ErrorMessage = "описание*")]
         public string Description { get; set; }
-        public string ImgPath { get; set; }
+        public ICollection<ImgInfo> ImgList { get; set; }
         public bool Like { get; set; }
+        public ProductViewModel()
+        {
+            ImgList = new List<ImgInfo>();
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace Clothes_Online_Shop.Controllers
                 Brand = productDB.Brand,
                 Country = productDB.Country,
                 Description = productDB.Description,
-                ImgPath = productDB.ImgPath,
+                ImgList = productDB.ImgList,
                 Like = productDB.Like
             };
             cartsRepository.Add(product, ShopUser.UserId);

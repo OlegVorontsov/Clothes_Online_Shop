@@ -22,73 +22,28 @@
                 </div>
                 <div class="splide__track splide__track-left">
                     <ul class="splide__list">
-                        <li class="splide__slide product__slide-item">
-                            <div class="thumbnail-card">
-                                <img src="/img/img-1.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="thumbnail-card">
-                                <img src="/img/img-2.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="thumbnail-card">
-                                <img src="/img/img-3.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="thumbnail-card">
-                                <img src="/img/img-4.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="thumbnail-card">
-                                <img src="/img/img-5.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="thumbnail-card">
-                                <img src="/img/img-6.jpg" alt="">
-                            </div>
-                        </li>
-
+                        @foreach (var imgPath in Model.ImgList)
+                        {
+                            <li class="splide__slide product__slide-item">
+                                <div class="thumbnail-card">
+                                    <img src="@imgPath" alt="">
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>
             <div id="productMain" class="splide" aria-label="">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        <li class="splide__slide product__slide-item">
-                            <div class="card-main">
-                                <img src="/img/img-1.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="card-main">
-                                <img src="/img/img-2.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="card-main">
-                                <img src="/img/img-3.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="card-main">
-                                <img src="/img/img-4.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="card-main">
-                                <img src="/img/img-5.jpg" alt="">
-                            </div>
-                        </li>
-                        <li class="splide__slide product__slide-item">
-                            <div class="card-main">
-                                <img src="/img/img-6.jpg" alt="">
-                            </div>
-                        </li>
+                        @foreach (var imgPath in Model.ImgList)
+                        {
+                            <li class="splide__slide product__slide-item">
+                                <div class="card-main">
+                                    <img src="@imgPath" alt="">
+                                </div>
+                            </li>
+                        }
                     </ul>
                 </div>
             </div>

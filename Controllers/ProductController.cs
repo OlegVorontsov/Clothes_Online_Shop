@@ -34,7 +34,7 @@ namespace Clothes_Online_Shop.Controllers
                     Brand = productDB.Brand,
                     Country = productDB.Country,
                     Description = productDB.Description,
-                    ImgPath = productDB.ImgPath,
+                    ImgList = productDB.ImgList,
                     Like = productDB.Like
                 };
                 products.Add(product);
@@ -63,7 +63,7 @@ namespace Clothes_Online_Shop.Controllers
                 Brand = productDB.Brand,
                 Country = productDB.Country,
                 Description = productDB.Description,
-                ImgPath = productDB.ImgPath,
+                ImgList = productDB.ImgList,
                 Like = productDB.Like
             };
             return View(product);
