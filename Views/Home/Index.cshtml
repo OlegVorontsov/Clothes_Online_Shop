@@ -119,6 +119,18 @@
             <a class="link-reset popular__top-link" asp-area="" asp-controller="Product" asp-action="Catalog">В каталог</a>
         </div>
         <div id="popularSlider" class="splide" role="group" aria-label="Splide Basic HTML Example">
+            <div class="splide__arrows">
+                <button class="splide__arrow splide__arrow--prev">
+                    <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 1.75L7.75 8L1.5 14.25" stroke="white" stroke-width="1.5" stroke-linecap="square" />
+                    </svg>
+                </button>
+                <button class="splide__arrow splide__arrow--next">
+                    <svg width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1.5 1.75L7.75 8L1.5 14.25" stroke="white" stroke-width="1.5" stroke-linecap="square" />
+                    </svg>
+                </button>
+            </div>
             <div class="splide__track">
                 <ul class="splide__list">
                     @foreach (var product in Model)

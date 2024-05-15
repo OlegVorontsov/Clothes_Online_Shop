@@ -4,18 +4,97 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-    <div class="col-4">
-        <img style="max-width: 100%" src="@Model.ImgPath"/>
-    </div>
-    <div class="col-8">
-        <a href="/product/index/@Model.Id">
-            <h5>@Model.Name</h5>
-            <h5>@Model.Cost руб.</h5>
-            <p>@Model.Description</p>
-        </a>
-        <a class="btn btn-dark" href="/cart/add?productId=@Model.Id" role="button">Добавить в корзину</a>
+<div class="product">
+    <div class="product__content">
+        <div class="product-left">
+            <div id="productThumbnail" class="splide productThumbnail" aria-label="">
+                <div class="splide__arrows">
+                    <button class="splide__arrow splide__arrow--prev product__arrow">
+                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.90918 9L8.90918 1L16.9092 9" stroke="#8C9196" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                    <button class="splide__arrow splide__arrow--next product__arrow">
+                        <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0.90918 9L8.90918 1L16.9092 9" stroke="#8C9196" stroke-linecap="round" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="splide__track splide__track-left">
+                    <ul class="splide__list">
+                        <li class="splide__slide product__slide-item">
+                            <div class="thumbnail-card">
+                                <img src="/img/img-1.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="thumbnail-card">
+                                <img src="/img/img-2.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="thumbnail-card">
+                                <img src="/img/img-3.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="thumbnail-card">
+                                <img src="/img/img-4.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="thumbnail-card">
+                                <img src="/img/img-5.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="thumbnail-card">
+                                <img src="/img/img-6.jpg" alt="">
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div id="productMain" class="splide" aria-label="">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide product__slide-item">
+                            <div class="card-main">
+                                <img src="/img/img-1.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="card-main">
+                                <img src="/img/img-2.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="card-main">
+                                <img src="/img/img-3.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="card-main">
+                                <img src="/img/img-4.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="card-main">
+                                <img src="/img/img-5.jpg" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide product__slide-item">
+                            <div class="card-main">
+                                <img src="/img/img-6.jpg" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<a href="/product/catalog">В каталог</a>
+
+
