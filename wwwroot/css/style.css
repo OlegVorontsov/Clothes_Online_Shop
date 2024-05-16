@@ -997,12 +997,13 @@ a {
 }
 
 .product-left {
-    max-width: 660px;
+    max-width: 630px;
     display: flex;
 }
 
 .splide__track-left {
-    padding-top: 30px !important;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .product__arrow {
@@ -1038,7 +1039,7 @@ a {
 }
 
 .card-main {
-    max-width: 532px;
+    max-width: 420px;
 }
 
 .product__slide-item {

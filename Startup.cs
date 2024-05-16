@@ -27,6 +27,7 @@ namespace Clothes_Online_Shop
             Configuration.GetConnectionString("online_shop")));
 
             services.AddTransient<IProductsRepository, ProductsDBRepository>();
+            services.AddTransient<IImgInfosDBRepository, ImgInfosDBRepository>();
             services.AddSingleton<ICartsRepository, CartsInMemoryRepository>();
             services.AddSingleton<IOrdersRepository, OrdersInMemoryRepository>();
             services.AddSingleton<IRolesRepository, RolesInMemoryRepository>();

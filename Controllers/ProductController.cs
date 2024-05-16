@@ -9,10 +9,12 @@ namespace Clothes_Online_Shop.Controllers
     public class ProductController : Controller
     {
         private readonly IProductsRepository productsRepository;
+        private readonly IImgInfosDBRepository imgInfosRepository;
 
-        public ProductController(IProductsRepository productsRepository)
+        public ProductController(IProductsRepository productsRepository, IImgInfosDBRepository imgInfosRepository)
         {
             this.productsRepository = productsRepository;
+            this.imgInfosRepository = imgInfosRepository;
         }
 
         public IActionResult Catalog()
@@ -21,6 +23,7 @@ namespace Clothes_Online_Shop.Controllers
             var products = new List<ProductViewModel>();
             foreach (var productDB in productsDB)
             {
+                var imgInfosDB = imgInfosRepository.GetAllByProductId(productDB.Id);
                 var product = new ProductViewModel
                 {
                     Id = productDB.Id,
@@ -34,7 +37,7 @@ namespace Clothes_Online_Shop.Controllers
                     Brand = productDB.Brand,
                     Country = productDB.Country,
                     Description = productDB.Description,
-                    ImgList = productDB.ImgList,
+                    ImgList = imgInfosDB,
                     Like = productDB.Like
                 };
                 products.Add(product);
@@ -50,6 +53,7 @@ namespace Clothes_Online_Shop.Controllers
                 object result = $"Товар с id {id} отсутствует";
                 return View("Error", result);
             }
+            var imgInfosDB = imgInfosRepository.GetAllByProductId(productDB.Id);
             var product = new ProductViewModel
             {
                 Id = productDB.Id,
@@ -63,7 +67,7 @@ namespace Clothes_Online_Shop.Controllers
                 Brand = productDB.Brand,
                 Country = productDB.Country,
                 Description = productDB.Description,
-                ImgList = productDB.ImgList,
+                ImgList = imgInfosDB,
                 Like = productDB.Like
             };
             return View(product);

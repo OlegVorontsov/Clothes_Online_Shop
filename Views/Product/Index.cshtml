@@ -22,11 +22,11 @@
                 </div>
                 <div class="splide__track splide__track-left">
                     <ul class="splide__list">
-                        @foreach (var imgPath in Model.ImgList)
+                        @foreach (var item in Model.ImgList)
                         {
                             <li class="splide__slide product__slide-item">
                                 <div class="thumbnail-card">
-                                    <img src="@imgPath" alt="">
+                                    <img src="@item.Path" alt="">
                                 </div>
                             </li>
                         }
@@ -36,11 +36,11 @@
             <div id="productMain" class="splide" aria-label="">
                 <div class="splide__track">
                     <ul class="splide__list">
-                        @foreach (var imgPath in Model.ImgList)
+                        @foreach (var item in Model.ImgList)
                         {
                             <li class="splide__slide product__slide-item">
                                 <div class="card-main">
-                                    <img src="@imgPath" alt="">
+                                    <img src="@item.Path" alt="">
                                 </div>
                             </li>
                         }

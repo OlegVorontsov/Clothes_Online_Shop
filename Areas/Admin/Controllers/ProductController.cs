@@ -11,10 +11,12 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IProductsRepository productsRepository;
+        private readonly IImgInfosDBRepository imgInfosRepository;
 
-        public ProductController(IProductsRepository productsRepository)
+        public ProductController(IProductsRepository productsRepository, IImgInfosDBRepository imgInfosRepository)
         {
             this.productsRepository = productsRepository;
+            this.imgInfosRepository = imgInfosRepository;
         }
 
         public IActionResult Index()
@@ -23,6 +25,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             var products = new List<ProductViewModel>();
             foreach (var productDB in productsDB)
             {
+                var imgInfosDB = imgInfosRepository.GetAllByProductId(productDB.Id);
                 var product = new ProductViewModel
                 {
                     Id = productDB.Id,
@@ -36,7 +39,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                     Brand = productDB.Brand,
                     Country = productDB.Country,
                     Description = productDB.Description,
-                    ImgList = productDB.ImgList,
+                    ImgList = imgInfosDB,
                     Like = productDB.Like
                 };
                 products.Add(product);
@@ -65,9 +68,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 Fabric = product.Fabric,
                 Brand = product.Brand,
                 Country = product.Country,
-                Description = product.Description,
-                ImgList = product.ImgList,
-                Like = product.Like
+                Description = product.Description
             };
             productsRepository.AddProduct(productDB);
             return RedirectToAction(nameof(Index));
@@ -92,7 +93,6 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 Brand = productDB.Brand,
                 Country = productDB.Country,
                 Description = productDB.Description,
-                ImgList = productDB.ImgList,
                 Like = productDB.Like
             };
             return View(product);
@@ -117,7 +117,6 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 Brand = product.Brand,
                 Country = product.Country,
                 Description = product.Description,
-                ImgList = product.ImgList,
                 Like = product.Like
             };
             productsRepository.Update(productDB);
@@ -143,7 +142,6 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
                 Brand = productDB.Brand,
                 Country = productDB.Country,
                 Description = productDB.Description,
-                ImgList = productDB.ImgList,
                 Like = productDB.Like
             };
             return View(product);

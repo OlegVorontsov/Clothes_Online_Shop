@@ -1,5 +1,5 @@
 const productMain = new Splide('#productMain', {
-    height: '787px',
+    height: '650px',
     type: 'fade',
     heightRatio: 0.5,
     pagination: false,
@@ -9,7 +9,7 @@ const productMain = new Splide('#productMain', {
 
 const productThumbnail = new Splide('#productThumbnail', {
     direction: 'ttb',
-    height: '742px',
+    height: '590px',
     wheel: true,
     rewind: true,
     fixedWidth: 68,

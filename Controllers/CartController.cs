@@ -10,11 +10,13 @@ namespace Clothes_Online_Shop.Controllers
     public class CartController : Controller
     {
         private readonly IProductsRepository productsRepository;
+        private readonly IImgInfosDBRepository imgInfosRepository;
         private readonly ICartsRepository cartsRepository;
-        public CartController(IProductsRepository productsRepository, ICartsRepository cartsRepository)
+        public CartController(IProductsRepository productsRepository, ICartsRepository cartsRepository, IImgInfosDBRepository imgInfosRepository)
         {
             this.productsRepository = productsRepository;
             this.cartsRepository = cartsRepository;
+            this.imgInfosRepository = imgInfosRepository;
         }
         public IActionResult Index()
         {
@@ -25,6 +27,7 @@ namespace Clothes_Online_Shop.Controllers
         public IActionResult Add(Guid productId)
         {
             var productDB = productsRepository.TryGetById(productId);
+            var imgInfosDB = imgInfosRepository.GetAllByProductId(productDB.Id);
             var product = new ProductViewModel
             {
                 Id = productDB.Id,
@@ -38,7 +41,7 @@ namespace Clothes_Online_Shop.Controllers
                 Brand = productDB.Brand,
                 Country = productDB.Country,
                 Description = productDB.Description,
-                ImgList = productDB.ImgList,
+                ImgList = imgInfosDB,
                 Like = productDB.Like
             };
             cartsRepository.Add(product, ShopUser.UserId);

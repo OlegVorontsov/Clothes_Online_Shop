@@ -9,10 +9,12 @@ namespace Clothes_Online_Shop.Controllers
     public class HomeController : Controller
     {
         private readonly IProductsRepository productsRepository;
+        private readonly IImgInfosDBRepository imgInfosRepository;
 
-        public HomeController(IProductsRepository productsRepository)
+        public HomeController(IProductsRepository productsRepository, IImgInfosDBRepository imgInfosRepository)
         {
             this.productsRepository = productsRepository;
+            this.imgInfosRepository = imgInfosRepository;
         }
         public IActionResult Index()
         {
@@ -20,6 +22,7 @@ namespace Clothes_Online_Shop.Controllers
             var products = new List<ProductViewModel>();
             foreach (var productDB in productsDB)
             {
+                var imgInfosDB = imgInfosRepository.GetAllByProductId(productDB.Id);
                 var product = new ProductViewModel
                 {
                     Id = productDB.Id,
@@ -33,7 +36,7 @@ namespace Clothes_Online_Shop.Controllers
                     Brand = productDB.Brand,
                     Country = productDB.Country,
                     Description = productDB.Description,
-                    ImgList = productDB.ImgList,
+                    ImgList = imgInfosDB,
                     Like = productDB.Like
                 };
                 products.Add(product);
