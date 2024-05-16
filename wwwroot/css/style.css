@@ -88,6 +88,10 @@ a {
     padding: 0.75rem 1.5rem;
 }
 
+.btn:focus {
+    box-shadow: unset;
+}
+
 .link-reset,
 .btn {
     font-weight: 600;
@@ -994,10 +998,14 @@ a {
 
 .product__content {
     padding: 0 60px;
+    display: flex;
 }
 
+/* product img slider */
+
 .product-left {
-    max-width: 630px;
+    max-width: 518px;
+    margin-right: 30px;
     display: flex;
 }
 
@@ -1056,4 +1064,29 @@ a {
 
 .splide__track--nav > .splide__list > .splide__slide.is-active {
     border: none;
+}
+
+/* end of product img slider */
+
+/* product accordion */
+
+.accordion {
+    width: 100%;
+}
+
+.card {
+    border-radius: unset;
+    border-top: 1px solid rgba(0, 0, 0, .125);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    border-right: unset;
+    border-left: unset;
+}
+
+.card-header {
+    background-color: unset;
+}
+
+.btn-link {
+    color: var(--color-default);
+    text-decoration: none;
 }
