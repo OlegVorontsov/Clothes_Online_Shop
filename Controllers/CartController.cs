@@ -1,7 +1,5 @@
-﻿using Clothes_Online_Shop.Data;
-using Clothes_Online_Shop.DB.Data;
-using Clothes_Online_Shop.DB.Models;
-using Clothes_Online_Shop.Models;
+﻿using Clothes_Online_Shop.DB.Data;
+using Clothes_Online_Shop.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -21,30 +19,13 @@ namespace Clothes_Online_Shop.Controllers
         public IActionResult Index()
         {
             var cart = cartsRepository.TryGetByUserId(ShopUser.UserId);
-            return View(cart);
+            return View(Mapping.ToCartViewModel(cart));
         }
 
         public IActionResult Add(Guid productId)
         {
             var productDB = productsRepository.TryGetById(productId);
-            var imgInfosDB = imgInfosRepository.GetAllByProductId(productDB.Id);
-            var product = new ProductViewModel
-            {
-                Id = productDB.Id,
-                Name = productDB.Name,
-                Item = productDB.Item,
-                Cost = productDB.Cost,
-                Size = productDB.Size,
-                Color = productDB.Color,
-                Care = productDB.Care,
-                Fabric = productDB.Fabric,
-                Brand = productDB.Brand,
-                Country = productDB.Country,
-                Description = productDB.Description,
-                ImgList = imgInfosDB,
-                Like = productDB.Like
-            };
-            cartsRepository.Add(product, ShopUser.UserId);
+            cartsRepository.Add(productDB, ShopUser.UserId);
             return RedirectToAction("Index");
         }
 

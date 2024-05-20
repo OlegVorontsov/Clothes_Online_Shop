@@ -154,6 +154,7 @@ a {
 
 .flex {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .text-red {
@@ -1015,9 +1016,14 @@ a {
     color: var(--color-dark);
 }
 
+.product__content-flex {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 product-flex {
     display: flex;
-    align-items:flex-end;
+    align-items: flex-end;
 }
 
 .product__page-link {
@@ -1032,7 +1038,6 @@ product-flex {
 .product__page-link:active {
     color: #c5c5c5;
 }
-
 
 /* product img slider */
 .product-left {

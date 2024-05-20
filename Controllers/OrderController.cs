@@ -1,4 +1,6 @@
 ﻿using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.DB.Data;
+using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +25,8 @@ namespace Clothes_Online_Shop.Controllers
                 return RedirectToAction("Index", "Cart", userInfo);
             }
             var existingCart =  cartsRepository.TryGetByUserId(ShopUser.UserId);
-            var newOrder = new Order { UserInfo = userInfo, Items = existingCart.Items };
+            var existingCartViewModel = Mapping.ToCartViewModel(existingCart);
+            var newOrder = new Order { UserInfo = userInfo, Items = existingCartViewModel.Items };
             ordersRepository.Add(newOrder);
             cartsRepository.Clear(ShopUser.UserId);
             return RedirectToAction("Catalog", "Product");

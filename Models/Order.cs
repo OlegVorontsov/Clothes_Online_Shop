@@ -7,7 +7,7 @@ namespace Clothes_Online_Shop.Models
     {
         public Guid Id { get; set; }
         public UserDeliveryInfo UserInfo { get; set; }
-        public List<CartItem> Items { get; set; }
+        public List<CartItemViewModel> Items { get; set; }
         public OrderStatus Status { get; set; }
         public DateTime CreatedDateTime { get; set; }
         public Order()

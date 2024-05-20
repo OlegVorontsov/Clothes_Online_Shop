@@ -1,5 +1,6 @@
-﻿using Clothes_Online_Shop.Data;
-using Microsoft.AspNetCore.Mvc; 
+﻿using Clothes_Online_Shop.DB.Data;
+using Clothes_Online_Shop.Helpers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Clothes_Online_Shop.Views.Shared.ViewComponents.CartViewComponents
 {
@@ -13,7 +14,8 @@ namespace Clothes_Online_Shop.Views.Shared.ViewComponents.CartViewComponents
         public IViewComponentResult Invoke()
         {
             var cart = cartsRepository.TryGetByUserId(ShopUser.UserId);
-            var ProductsCount = cart?.ProductsCount ?? 0;
+            var cartViewModel = Mapping.ToCartViewModel(cart);
+            var ProductsCount = cartViewModel?.ProductsCount ?? 0;
             return View("Cart", ProductsCount);
         }
 
