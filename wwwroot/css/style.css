@@ -679,9 +679,22 @@ a {
     right: 20px;
 }
 
+.popular__splide-like svg path {
+    stroke: var(--color-default);
+    transition: stroke .3s ease-in-out;
+}
+
+.popular__splide-like:focus svg path,
+.popular__splide-like:hover svg path {
+    stroke: var(--color-light);
+}
+
+.popular__splide-like:active svg path {
+    stroke: var(--color-white);
+}
+
 .heart-fill svg {
-    fill: var(--color-light);
-/*    fill: #e4ecf5;*/
+    fill: var(--color-default);
 }
 
 .popular__splide-img {
@@ -1240,6 +1253,20 @@ product-flex {
 }
 
 .favorite__icon-img svg{
-    fill: var(--color-light);
-/*  fill: #e4ecf5;*/
+    fill: var(--color-default)
 }
+
+.favorite__icon-img svg path {
+    stroke: var(--color-default);
+    transition: stroke .3s ease-in-out;
+}
+
+.favorite__icon-img:focus svg path,
+.favorite__icon-img:hover svg path {
+    stroke: var(--color-light);
+}
+
+.favorite__icon-img:active svg path {
+    stroke: var(--color-white);
+}
+
