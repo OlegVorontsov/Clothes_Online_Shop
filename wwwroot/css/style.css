@@ -670,6 +670,13 @@ a {
 
 .popular__splide-card {
     max-width: 300px;
+    position: relative;
+}
+
+.popular__splide-like {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
 
 .popular__splide-img {
@@ -1041,6 +1048,7 @@ product-flex {
 
 /* product img slider */
 .product-left {
+    position: relative;
     max-width: 518px;
     max-height: 650px;
     margin-right: 30px;
@@ -1213,3 +1221,19 @@ product-flex {
 }
 
 /* end of product accordion */
+
+/* favorite page */
+
+.favorite__icon {
+    position: relative;
+}
+
+.favorite__icon-img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.favorite__icon-img svg path{
+    fill: var(--color-red);
+}
