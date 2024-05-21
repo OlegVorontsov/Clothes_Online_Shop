@@ -29,10 +29,9 @@ namespace Clothes_Online_Shop.Controllers
         }
         public IActionResult Remove(Guid productId)
         {
-            favoriteRepository.Remove(ShopUser.UserId, productId);
+            var product = productsRepository.TryGetById(productId);
+            favoriteRepository.Remove(ShopUser.UserId, product);
             return RedirectToAction(nameof(Index));
         }
-
-
     }
 }

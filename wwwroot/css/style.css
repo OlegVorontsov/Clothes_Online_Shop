@@ -679,6 +679,11 @@ a {
     right: 20px;
 }
 
+.heart-fill svg {
+    fill: var(--color-light);
+/*    fill: #e4ecf5;*/
+}
+
 .popular__splide-img {
     width: 100%;
     height: 100%;
@@ -1234,6 +1239,7 @@ product-flex {
     right: 20px;
 }
 
-.favorite__icon-img svg path{
-    fill: var(--color-red);
+.favorite__icon-img svg{
+    fill: var(--color-light);
+/*  fill: #e4ecf5;*/
 }
