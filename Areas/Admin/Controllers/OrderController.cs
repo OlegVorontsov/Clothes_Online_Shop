@@ -1,7 +1,11 @@
 ﻿using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.DB.Data;
+using Clothes_Online_Shop.DB.Models;
+using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 
 namespace Clothes_Online_Shop.Areas.Admin.Controllers
 {
@@ -18,13 +22,13 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var orders = ordersRepository.GetAll();
-            return View(orders);
+            return View(orders.Select(x => Mapping.ToOrderViewModel(x)).ToList());
         }
 
         public IActionResult Details(Guid orderId)
         {
             var order = ordersRepository.TryGetById(orderId);
-            return View(order);
+            return View(Mapping.ToOrderViewModel(order));
         }
         public IActionResult Delete(Guid orderId)
         {
@@ -36,9 +40,9 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             ordersRepository.DeleteOrder(orderId);
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult UpdateStatus(Guid orderId, OrderStatus newStatus)
+        public IActionResult UpdateStatus(Guid orderId, OrderStatusViewModel newStatus)
         {
-            ordersRepository.UpdateStatus(orderId, newStatus);
+            ordersRepository.UpdateStatus(orderId, (OrderStatus)(int)newStatus);
             return RedirectToAction(nameof(Index));
         }
     }

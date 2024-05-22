@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Clothes_Online_Shop.Models
 {
-    public class UserDeliveryInfo
+    public class UserDeliveryInfoViewModel
     {
         public string Name { get; set; }
 

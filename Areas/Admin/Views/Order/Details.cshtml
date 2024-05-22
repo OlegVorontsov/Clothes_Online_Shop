@@ -1,4 +1,4 @@
-﻿@model Order
+﻿@model OrderViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -25,7 +25,7 @@
                         <td>
                             <select name="newStatus"
                                     asp-for="@Model.Status"
-                                    asp-items="@Html.GetEnumSelectList<OrderStatus>()"
+                                    asp-items="@Html.GetEnumSelectList<OrderStatusViewModel>()"
                                     class="form-control">
                             </select>
                         </td>

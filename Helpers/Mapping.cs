@@ -1,5 +1,6 @@
 ﻿using Clothes_Online_Shop.DB.Models;
 using Clothes_Online_Shop.Models;
+using System;
 using System.Collections.Generic;
 
 namespace Clothes_Online_Shop.Helpers
@@ -34,6 +35,17 @@ namespace Clothes_Online_Shop.Helpers
                 Like = product.Like
             };
         }
+
+        public static UserDeliveryInfo ToUser(UserDeliveryInfoViewModel userInfo)
+        {
+            return new UserDeliveryInfo
+            {
+                Email = userInfo.Email,
+                Name = userInfo.Name,
+                Phone = userInfo.Phone
+            };
+        }
+
         public static CartViewModel ToCartViewModel(Cart cart)
         {
             if (cart == null)
@@ -61,6 +73,26 @@ namespace Clothes_Online_Shop.Helpers
                 cartItems.Add(cartItem);
             }
             return cartItems;
+        }
+        public static OrderViewModel ToOrderViewModel (Order order)
+        {
+            return new OrderViewModel
+            {
+                Id = order.Id,
+                CreatedDateTime = order.CreatedDateTime,
+                Status = (OrderStatusViewModel)(int)order.Status,
+                UserInfo = ToUserDeliveryInfoViewModel(order.UserInfo),
+                Items = ToCartItemViewModels(order.Items)
+            };
+        }
+        public static UserDeliveryInfoViewModel ToUserDeliveryInfoViewModel(UserDeliveryInfo userInfo)
+        {
+            return new UserDeliveryInfoViewModel
+            {
+                Name = userInfo.Name,
+                Email = userInfo.Email,
+                Phone = userInfo.Phone
+            };
         }
     }
 }
