@@ -4,135 +4,170 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="row">
-    <div class="col-5">
-        <h3>Информация о клиенте</h3>
-        <p>Ваше имя</p>
-        <p>Имя получателя заказа</p>
-        <input class="input-reset" id="name" type="text" name="name" placeholder="Ваше имя" required>
-        <p>E-mail</p>
-        <p>Для отправки деталей заказа, статуса производства и доставки</p>
-        <input class="input-reset" id="email" type="email" name="email" placeholder="Введите e-mail" required>
-        <p>Телефон</p>
-        <p>Чтобы мы могли связаться для уточнения деталей доставки или заказанного товара</p>
-        <input class="input-reset" id="phone" type="tel" name="phone" placeholder="Введите телефон" required>
-        <h3>Информация о доставке</h3>
-        <p>
-            Бесплатная доставка при заказе от 3 000 руб. Вы можете выбрать подходящий для вас способ доставки товара:
-        </p>
-        <div>
-            <p>Курьерская доставка. Срок – от 1 дня.</p>
-            <p>Пункты выдачи заказов и постаматы. Срок – от 1 дня.</p>
-            <p>Самовывозом из магазина. Срок – от 1 дня.</p>
+<div class="cart">
+    <div class="cart__content">
+        <div class="flex mb-4">
+            <a class="product__page-start product__page-link pr-1" asp-area="" asp-controller="Home" asp-action="Index">Главная /</a>
+            <a class="product__page-start product__page-link pr-1" asp-area="" asp-controller="Product" asp-action="Catalog">Каталог /</a>
+            <a class="product__page-product" asp-area="" asp-controller="Cart" asp-action="Index">Корзина</a>
         </div>
-        <button type="button" class="btn btn-secondary" id="modalButton" data-toggle="modal" data-target="#exampleModal">Оформить заказ</button>
-        <!-- Модальное окно -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <button type="button" class="btn-reset modal-close-btn" data-dismiss="modal" aria-label="Закрыть">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M14.545 1.45459L1.4541 14.5455" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
-                            <path d="M14.545 14.5455L1.4541 1.45459" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                    <h3 class="modal-title" id="exampleModalLabel">Оформить заказ</h3>
-                    <p class="modal-text">Мы обязательно свяжемся с Вами для уточнения деталей заказа</p>
-                    <form class="modal-form" id="request" method="post">
-                        <input type="hidden" id="modal-name" name="name" value="" />
-                        <input type="hidden" id="modal-email" name="email" value="" />
-                        <input type="hidden" id="modal-phone" name="phone" value="" />
-                        <button class="btn btn-secondary modal-btn" type="submit" asp-controller="Order" asp-action="Buy">Оформить заказ</button>
-                        <label class="modal-checkbox">
-                            <input class="modal-checkbox-input" type="checkbox" required>
-                            <p class="modal-checkbox-text">Согласен с условиями Правил пользования и Правилами возврата</p>
-                        </label>
-                    </form>
-                    <div class="modal-pay">
-                        <a href="#" class="modal-pay-logo">
-                            <img src="/img/modal-pay-logo-1.svg" alt="apple pay logo">
-                        </a>
-                        <a href="#" class="modal-pay-logo">
-                            <img src="/img/modal-pay-logo-2.svg" alt="google pay logo">
-                        </a>
-                        <a href="#" class="modal-pay-logo">
-                            <img src="/img/modal-pay-logo-3.svg" alt="mastercard logo">
-                        </a>
-                        <a href="#" class="modal-pay-logo">
-                            <img src="/img/modal-pay-logo-4.svg" alt="mir logo">
-                        </a>
-                        <a href="#" class="modal-pay-logo">
-                            <img src="/img/modal-pay-logo-5.svg" alt="visa logo">
-                        </a>
+        <div class="row">
+            <div class="col-5">
+                <div class="cart__left-top">
+                    <h2 class="product__title mb-4">Информация о клиенте</h2>
+                    <p class="cart__text-main">Ваше имя</p>
+                    <p class="cart__left-text">Имя получателя заказа</p>
+                    <input class="input-reset" id="name" type="text" name="name" placeholder="Ваше имя" required>
+                    <p class="cart__text-main">E-mail</p>
+                    <p class="cart__left-text">Для отправки деталей заказа, статуса производства и доставки</p>
+                    <input class="input-reset" id="email" type="email" name="email" placeholder="Введите e-mail" required>
+                    <p class="cart__text-main">Телефон</p>
+                    <p class="cart__left-text">Чтобы мы могли связаться для уточнения деталей доставки или заказанного товара</p>
+                    <input class="input-reset" id="phone" type="tel" name="phone" placeholder="Введите телефон" required>
+                    <button type="button" class="btn btn-secondary cart__order-btn" id="modalButton" data-toggle="modal" data-target="#exampleModal">Оформить заказ</button>
+                    <!-- Модальное окно -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <button type="button" class="btn-reset modal-close-btn" data-dismiss="modal" aria-label="Закрыть">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.545 1.45459L1.4541 14.5455" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                                        <path d="M14.545 14.5455L1.4541 1.45459" stroke="#565656" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="round" />
+                                    </svg>
+                                </button>
+                                <h3 class="modal-title" id="exampleModalLabel">Оформить заказ</h3>
+                                <p class="modal-text">Мы обязательно свяжемся с Вами для уточнения деталей заказа</p>
+                                <form class="modal-form" id="request" method="post">
+                                    <input type="hidden" id="modal-name" name="name" value="" />
+                                    <input type="hidden" id="modal-email" name="email" value="" />
+                                    <input type="hidden" id="modal-phone" name="phone" value="" />
+                                    <button class="btn btn-secondary modal-btn" type="submit" asp-controller="Order" asp-action="Buy">Оформить заказ</button>
+                                    <label class="modal-checkbox">
+                                        <input class="modal-checkbox-input" type="checkbox" required>
+                                        <p class="modal-checkbox-text">Согласен с условиями Правил пользования и Правилами возврата</p>
+                                    </label>
+                                </form>
+                                <div class="modal-pay">
+                                    <a href="#" class="modal-pay-logo">
+                                        <img src="/img/modal-pay-logo-1.svg" alt="apple pay logo">
+                                    </a>
+                                    <a href="#" class="modal-pay-logo">
+                                        <img src="/img/modal-pay-logo-2.svg" alt="google pay logo">
+                                    </a>
+                                    <a href="#" class="modal-pay-logo">
+                                        <img src="/img/modal-pay-logo-3.svg" alt="mastercard logo">
+                                    </a>
+                                    <a href="#" class="modal-pay-logo">
+                                        <img src="/img/modal-pay-logo-4.svg" alt="mir logo">
+                                    </a>
+                                    <a href="#" class="modal-pay-logo">
+                                        <img src="/img/modal-pay-logo-5.svg" alt="visa logo">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $('#modalButton').click(function () {
+                            $('#modal-name').val($('#name').val());
+                            $('#modal-email').val($('#email').val());
+                            $('#modal-phone').val($('#phone').val());
+                        });
+                    </script>
+                    <!-- Модальное окно -->
+                </div>
+                <div class="cart__left-bottom">
+                    <h2 class="product__title mb-4">Информация о доставке</h2>
+                    <div class="row mb-3">
+                        <div class="col-9">
+                            <p class="accordion__text">
+                                Бесплатная доставка при заказе от 3 000 руб.
+                                Вы можете выбрать подходящий для вас способ доставки товара:
+                            </p>
+                        </div>
+                    </div>
+                    <div class="delivery-item delivery-icon-1 mb-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="accordion__text">Курьерская доставка. Срок – от 1 дня</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="delivery-item delivery-icon-2 mb-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="accordion__text">Пункты выдачи заказов и постаматы. Срок – от 1 дня</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="delivery-item delivery-icon-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="accordion__text">Самовывозом из магазина. Срок – от 1 дня</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <script>
-            $('#modalButton').click(function () {
-                $('#modal-name').val($('#name').val());
-                $('#modal-email').val($('#email').val());
-                $('#modal-phone').val($('#phone').val());
-            });
-        </script>
-        <!-- Модальное окно -->
-    </div>
-    <div class="col-7">
-        @if (Model == null || Model.ItemsCount == 0)
-        {
-            <h3>Корзина пустая</h3>
-        }
-        else
-        {
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Фото</th>
-                        <th>Цвет</th>
-                        <th>Размер</th>
-                        <th>Цена</th>
-                        <th>Количество</th>
-                        <th>Сумма</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Items)
-                    {
-                        <tr>
-                            <td>
-                                <img style="max-width: 68px" src="@item.Product.ImgList.FirstOrDefault().Path" />
-                            </td>
-                            <td>
-                                <div>
-                                    <p>@item.Product.Color</p>
-                                    <a href="/cart/deleteItem?productId=@item.Product.Id" role="button">Удалить товар</a>
-                                </div>
-                            </td>
-                            <td>@item.Product.Size</td>
-                            <td>
-                                <strong>@item.Product.Cost ₽</strong>
-                            </td>
-                            <td>
-                                <a href="/cart/decreaseAmount?productId=@item.Product.Id" role="button">&lt;</a>
-                                @item.Amount
-                                <a href="/cart/add?productId=@item.Product.Id" role="button">&gt;</a>
-                            </td>
-                            <td>
-                                <strong>@item.Cost ₽</strong>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            <div>
-                <p>Количество @Model.ProductsCount</p>
-                <p>Стоимость @Model.TotalCost ₽</p>
-                <p>Скидка @ShopUser.UserSale ₽</p>
-                <p>Доставка @ShopUser.UserDelivery ₽</p>
-                <h3>ИТОГО @Model.FullCost ₽</h3>
+            <div class="col-7">
+                @if (Model == null || Model.ItemsCount == 0)
+                {
+                    <h2 class="product__title mb-4">Корзина пуста</h2>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Фото</th>
+                                <th>Цвет</th>
+                                <th>Размер</th>
+                                <th>Цена</th>
+                                <th>Количество</th>
+                                <th>Сумма</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Items)
+                            {
+                                <tr>
+                                    <td>
+                                        <img style="max-width: 68px" src="@item.Product.ImgList.FirstOrDefault().Path" />
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p>@item.Product.Color</p>
+                                            <a href="/cart/deleteItem?productId=@item.Product.Id" role="button">Удалить товар</a>
+                                        </div>
+                                    </td>
+                                    <td>@item.Product.Size</td>
+                                    <td>
+                                        <strong>@item.Product.Cost ₽</strong>
+                                    </td>
+                                    <td>
+                                        <a href="/cart/decreaseAmount?productId=@item.Product.Id" role="button">&lt;</a>
+                                        @item.Amount
+                                        <a href="/cart/add?productId=@item.Product.Id" role="button">&gt;</a>
+                                    </td>
+                                    <td>
+                                        <strong>@item.Cost ₽</strong>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div>
+                        <p>Количество @Model.ProductsCount</p>
+                        <p>Стоимость @Model.TotalCost ₽</p>
+                        <p>Скидка @ShopUser.UserSale ₽</p>
+                        <p>Доставка @ShopUser.UserDelivery ₽</p>
+                        <h3>ИТОГО @Model.FullCost ₽</h3>
+                    </div>
+                }
             </div>
-        }
+        </div>
     </div>
 </div>
+
 
 
