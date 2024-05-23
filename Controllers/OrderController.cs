@@ -28,7 +28,7 @@ namespace Clothes_Online_Shop.Controllers
             var existingCart =  cartsRepository.TryGetByUserId(ShopUser.UserId);
             var newOrder = new Order
             {
-                UserInfo = Mapping.ToUser(userInfo),
+                UserInfo = userInfo.ToUser(),
                 Items = existingCart.Items
             };
             ordersRepository.Add(newOrder);

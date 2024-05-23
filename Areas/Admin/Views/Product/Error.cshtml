@@ -1,0 +1,12 @@
+﻿@model List<Guid>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2 class="news__title">Нельзя удалить товар, т.к. он есть в заказах со следующими Id</h2>
+@foreach (var item in Model)
+{
+    <p class="news__text">@item</p>
+}
+

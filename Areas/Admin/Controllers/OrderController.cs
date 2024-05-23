@@ -22,13 +22,13 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
         public IActionResult Index()
         {
             var orders = ordersRepository.GetAll();
-            return View(orders.Select(x => Mapping.ToOrderViewModel(x)).ToList());
+            return View(orders.Select(x => x.ToOrderViewModel()).ToList());
         }
 
         public IActionResult Details(Guid orderId)
         {
             var order = ordersRepository.TryGetById(orderId);
-            return View(Mapping.ToOrderViewModel(order));
+            return View(order.ToOrderViewModel());
         }
         public IActionResult Delete(Guid orderId)
         {

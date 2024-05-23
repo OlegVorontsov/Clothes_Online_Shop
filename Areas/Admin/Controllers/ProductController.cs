@@ -1,5 +1,6 @@
 ﻿using Clothes_Online_Shop.DB.Data;
 using Clothes_Online_Shop.DB.Models;
+using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -57,20 +58,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             {
                 return View(product);
             }
-            var productDB = new Product
-            {
-                Name = product.Name,
-                Item = product.Item,
-                Cost = product.Cost,
-                Size = product.Size,
-                Color = product.Color,
-                Care = product.Care,
-                Fabric = product.Fabric,
-                Brand = product.Brand,
-                Country = product.Country,
-                Description = product.Description
-            };
-            productsRepository.AddProduct(productDB);
+            productsRepository.AddProduct(product.ToProduct());
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Edit(Guid productId)
@@ -80,22 +68,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var product = new ProductViewModel
-            {
-                Id = productDB.Id,
-                Name = productDB.Name,
-                Item = productDB.Item,
-                Cost = productDB.Cost,
-                Size = productDB.Size,
-                Color = productDB.Color,
-                Care = productDB.Care,
-                Fabric = productDB.Fabric,
-                Brand = productDB.Brand,
-                Country = productDB.Country,
-                Description = productDB.Description,
-                Like = productDB.Like
-            };
-            return View(product);
+            return View(productDB.ToProductViewModel());
         }
         [HttpPost]
         public IActionResult Edit(ProductViewModel product)
@@ -104,22 +77,7 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             {
                 return View(product);
             }
-            var productDB = new Product
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Item = product.Item,
-                Cost = product.Cost,
-                Size = product.Size,
-                Color = product.Color,
-                Care = product.Care,
-                Fabric = product.Fabric,
-                Brand = product.Brand,
-                Country = product.Country,
-                Description = product.Description,
-                Like = product.Like
-            };
-            productsRepository.Update(productDB);
+            productsRepository.Update(product.ToProduct());
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Delete(Guid productId)
@@ -129,28 +87,18 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            var product = new ProductViewModel
-            {
-                Id = productDB.Id,
-                Name = productDB.Name,
-                Item = productDB.Item,
-                Cost = productDB.Cost,
-                Size = productDB.Size,
-                Color = productDB.Color,
-                Care = productDB.Care,
-                Fabric = productDB.Fabric,
-                Brand = productDB.Brand,
-                Country = productDB.Country,
-                Description = productDB.Description,
-                Like = productDB.Like
-            };
-            return View(product);
+            return View(productDB.ToProductViewModel());
         }
         public IActionResult DeleteProduct(Guid productId)
         {
             if (!ModelState.IsValid)
             {
                 return RedirectToAction("Index", "Product", productId);
+            }
+            var listOfOrders = productsRepository.CheckProductInItems(productId);
+            if (listOfOrders.Count != 0)
+            {
+                return View("Error", listOfOrders);
             }
             productsRepository.Delete(productId);
             return RedirectToAction(nameof(Index));

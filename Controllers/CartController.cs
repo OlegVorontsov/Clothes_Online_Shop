@@ -8,18 +8,16 @@ namespace Clothes_Online_Shop.Controllers
     public class CartController : Controller
     {
         private readonly IProductsRepository productsRepository;
-        private readonly IImgInfosDBRepository imgInfosRepository;
         private readonly ICartsRepository cartsRepository;
-        public CartController(IProductsRepository productsRepository, ICartsRepository cartsRepository, IImgInfosDBRepository imgInfosRepository)
+        public CartController(IProductsRepository productsRepository, ICartsRepository cartsRepository)
         {
             this.productsRepository = productsRepository;
             this.cartsRepository = cartsRepository;
-            this.imgInfosRepository = imgInfosRepository;
         }
         public IActionResult Index()
         {
             var cart = cartsRepository.TryGetByUserId(ShopUser.UserId);
-            return View(Mapping.ToCartViewModel(cart));
+            return View(cart.ToCartViewModel());
         }
 
         public IActionResult Add(Guid productId)

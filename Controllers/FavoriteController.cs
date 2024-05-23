@@ -19,7 +19,7 @@ namespace Clothes_Online_Shop.Controllers
         public IActionResult Index()
         {
             var products = favoriteRepository.GetAll(ShopUser.UserId);
-            return View(Mapping.ToProductViewModels(products));
+            return View(products.ToProductViewModels());
         }
         public IActionResult Add(Guid productId)
         {

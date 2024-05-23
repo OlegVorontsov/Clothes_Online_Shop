@@ -14,7 +14,7 @@ namespace Clothes_Online_Shop.Views.Shared.ViewComponents.CartViewComponents
         public IViewComponentResult Invoke()
         {
             var cart = cartsRepository.TryGetByUserId(ShopUser.UserId);
-            var cartViewModel = Mapping.ToCartViewModel(cart);
+            var cartViewModel = cart.ToCartViewModel();
             var ProductsCount = cartViewModel?.ProductsCount ?? 0;
             return View("Cart", ProductsCount);
         }
