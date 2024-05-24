@@ -9,11 +9,11 @@
     <div class="col-10">
         @if (Model == null || Model.Count == 0)
         {
-            <h4>Заказов нет</h4>
+            <h4 style="padding-left: 0.75rem!important">Заказов нет</h4>
         }
         else
         {
-            <h4>Заказы</h4>
+            <h4 style="padding-left: 0.75rem!important">Заказы</h4>
             <table class="table">
                 <thead>
                     <tr>
@@ -31,7 +31,7 @@
                         <tr>
                             <td>@(i+1)</td>
                             <td>
-                                <strong>@Model[i].TotalCost ₽</strong>
+                                <span class="table-main">@Model[i].TotalCost ₽</span>
                             </td>
                             <td>@EnumHelper.GetDisplayName(Model[i].Status)</td>
                             <td>@Model[i].CreatedDateTime.ToShortDateString()</td>
@@ -42,11 +42,11 @@
                                    asp-controller="Order"
                                    asp-action="Details"
                                    asp-route-orderId="@Model[i].Id"
-                                   role="button">Подробнее</a>
+                                   role="button">Подробнее
+                                </a>
                             </td>
                         </tr>
                     }
-
                 </tbody>
             </table>
         }

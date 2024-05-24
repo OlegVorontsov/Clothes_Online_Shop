@@ -6,7 +6,7 @@
 
 <div class="row justify-content-center">
     <div class="col-4">
-        <h3 class="text-center">Изменение прав у пользователя @Model.UserName</h3>
+        <h4 class="text-center">Изменение прав у пользователя @Model.UserName</h4>
         <form id="request" method="post">
             <div class="text-danger" asp-validation-summary="All"></div>
             <input type="hidden" name="userName" value="@Model.UserName"/>
@@ -16,7 +16,7 @@
                 <input class="input-reset" asp-for="RoleName" value="@Model.RoleName" placeholder="название прав*" />
             </div>
             <button style="min-width:100%"
-                    class="btn btn-secondary"
+                    class="btn btn-secondary mb-4"
                     type="submit"
                     asp-area="Admin"
                     asp-controller="User"

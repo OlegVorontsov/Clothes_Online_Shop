@@ -9,11 +9,11 @@
     <div class="col-10">
         @if (Model == null || Model.Count == 0)
         {
-            <h4>Товаров нет</h4>
+            <h4 style="padding-left: 0.75rem!important">Товаров нет</h4>
         }
         else
         {
-            <h4>Товары</h4>
+            <h4 style="padding-left: 0.75rem!important">Товары</h4>
             <table class="table">
                 <thead>
                     <tr>
@@ -35,7 +35,7 @@
                             <td>@item.Color</td>
                             <td>@item.Size</td>
                             <td>
-                                <strong>@item.Cost ₽</strong>
+                                <span class="table-main">@item.Cost ₽</span>
                             </td>
                             <td>
                                 <a class="btn-secondary btn"
@@ -62,7 +62,7 @@
                 </tbody>
             </table>
         }
-        <a class="btn btn-secondary"
+        <a class="btn btn-secondary mb-4"
            asp-area="Admin"
            asp-controller="Product"
            asp-action="Add"

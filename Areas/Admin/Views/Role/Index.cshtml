@@ -9,11 +9,11 @@
     <div class="col-10">
         @if (Model == null || Model.Count == 0)
         {
-            <h4>Прав нет</h4>
+            <h4 style="padding-left: 0.75rem!important">Прав нет</h4>
         }
         else
         {
-            <h4>Права</h4>
+            <h4 style="padding-left: 0.75rem!important">Права</h4>
             <table class="table">
                 <thead>
                     <tr>
@@ -41,7 +41,7 @@
                 </tbody>
             </table>
         }
-        <a class="btn btn-secondary"
+        <a class="btn btn-secondary mb-4"
            asp-area="Admin"
            asp-controller="Role"
            asp-action="Add"
