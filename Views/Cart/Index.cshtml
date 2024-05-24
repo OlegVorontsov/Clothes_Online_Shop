@@ -136,7 +136,7 @@
                                     </td>
                                     <td>
                                         <div class="cart__table-color">
-                                            <span class="cart__table-text">@item.Product.Color</span>
+                                            <span>@item.Product.Color</span>
                                             <a class="cart__table-del"
                                                asp-area=""
                                                asp-controller="Cart"
@@ -151,7 +151,7 @@
                                         @item.Product.Size
                                     </td>
                                     <td>
-                                        <span class="cart__table-main">@item.Product.Cost ₽</span>
+                                        <span class="table-main">@item.Product.Cost ₽</span>
                                     </td>
                                     <td>
                                         <div class="cart__table-count">
@@ -165,7 +165,7 @@
                                                     <path d="M8.75933e-05 3.31158L4.84009 0L4.84009 6.62316L8.75933e-05 3.31158Z" fill="#565656" />
                                                 </svg>
                                             </a>
-                                            <span class="cart__table-main cart__table-amount">@item.Amount</span>
+                                            <span class="table-main cart__table-amount">@item.Amount</span>
                                             <a class="cart__table-amounter"
                                                asp-area=""
                                                asp-controller="Cart"
@@ -180,7 +180,7 @@
                                     </td>
                                     <td>
                                         <div class="cart__table-sum">
-                                            <span class="cart__table-main">@item.Cost ₽</span>
+                                            <span class="table-main">@item.Cost ₽</span>
                                             <a class="btn btn-secondary hero-btn"
                                                asp-area=""
                                                asp-controller="Product"

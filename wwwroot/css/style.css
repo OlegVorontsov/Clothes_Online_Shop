@@ -50,6 +50,20 @@ a {
     color: var(--color-dark);
 }
 
+.table td {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    color: var(--color-default);
+}
+
+.table-main{
+    font-weight: 600;
+    line-height: 1;
+    color: var(--color-dark);
+}
+
 /*для кнопок не по bootstrap*/
 .btn-reset {
     padding: 0;
@@ -1332,22 +1346,6 @@ product-flex {
     max-width: 70px;
 }
 
-.cart__table-text {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.3;
-    letter-spacing: 0.04em;
-    color: var(--color-default);
-}
-
-.cart__table-main {
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 1;
-    text-transform: uppercase;
-    color: var(--color-dark);
-}
-
 .cart__table-color {
     height: 115px;
     display: flex;
@@ -1357,9 +1355,6 @@ product-flex {
 }
 
 .cart__table-del {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 1.7;
     color: var(--color-default);
     transition: color .3s ease-in-out;
 }
