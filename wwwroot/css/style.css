@@ -41,6 +41,15 @@ a {
     vertical-align: unset;
 }
 
+.table th {
+    text-align: left;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-dark);
+}
+
 /*для кнопок не по bootstrap*/
 .btn-reset {
     padding: 0;
@@ -158,7 +167,7 @@ a {
 }
 
 .text-red {
-    color: var(--color-red);
+    color: var(--color-red)!important;
 }
 
 .splide__pagination {
@@ -863,7 +872,7 @@ a {
 /* sale */
 
 .news {
-    margin-bottom: 80px;
+    margin-bottom: 30px;
 }
 
 .news__content {
@@ -1031,6 +1040,16 @@ a {
     line-height: 1.3;
     letter-spacing: 0.04em;
     color: #c5c5c5;
+    transition: color .3s ease-in-out;
+}
+
+.product__page-start:focus,
+.product__page-start:hover {
+    color: #8f8f8f;
+}
+
+.product__page-start:active {
+    color: #c5c5c5;
 }
 
 .product__page-product {
@@ -1038,6 +1057,16 @@ a {
     font-size: 14px;
     line-height: 1.3;
     letter-spacing: 0.04em;
+    color: var(--color-dark);
+    transition: color .3s ease-in-out;
+}
+
+.product__page-product:focus,
+.product__page-product:hover {
+    color: var(--color-default);
+}
+
+.product__page-product:active {
     color: var(--color-dark);
 }
 
@@ -1049,19 +1078,6 @@ a {
 product-flex {
     display: flex;
     align-items: flex-end;
-}
-
-.product__page-link {
-    transition: color 0.3s ease-in-out;
-}
-
-.product__page-link:focus,
-.product__page-link:hover {
-    color: var(--color-default);
-}
-
-.product__page-link:active {
-    color: #c5c5c5;
 }
 
 /* product img slider */
@@ -1282,13 +1298,13 @@ product-flex {
 }
 
 .cart__left-top {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .cart__text-main {
     margin: 0;
     margin-bottom: 10px;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
     line-height: 1;
     text-transform: uppercase;
@@ -1305,12 +1321,155 @@ product-flex {
     color: var(--color-default);
 }
 
+/* cart table */
 
+.cart__table td {
+    vertical-align: top;
+    padding: 1.5rem 0.75rem;
+}
 
+.cart__table-img {
+    max-width: 70px;
+}
 
+.cart__table-text {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    color: var(--color-default);
+}
+
+.cart__table-main {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-dark);
+}
+
+.cart__table-color {
+    height: 115px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.cart__table-del {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-default);
+    transition: color .3s ease-in-out;
+}
+
+.cart__table-del:focus,
+.cart__table-del:hover {
+    color: var(--color-light);
+}
+
+.cart__table-del:active {
+    color: var(--color-active);
+}
+
+.cart__table-count {
+    display: flex;
+    align-items: center;
+}
+
+.cart__table-amount {
+    padding-left: 17px;
+    padding-right: 17px;
+}
+
+.cart__table-amounter svg path {
+    fill: var(--color-default);
+    transition: fill .3s ease-in-out;
+}
+
+.cart__table-amounter:focus svg path,
+.cart__table-amounter:hover svg path {
+    fill: var(--color-light);
+}
+
+.cart__table-amounter:active svg path {
+    fill: var(--color-active);
+}
+
+.cart__table-sum {
+    height: 108px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
 
 .cart__order-btn {
+    height: 50px;
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: -50px;
+    right: -482px;
+}
+
+.total-line {
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.total-line-left {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    color: var(--color-default);
+}
+
+.total-line-center {
+    overflow: hidden;
+}
+
+.total-line-dotted {
+    white-space: nowrap;
+    color: var(--color-white);
+    border-bottom: 1px dotted #b4b4b4;
+}
+
+.total-line-right {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0.04em;
+    text-align: right;
+    color: var(--color-dark);
+    white-space:nowrap;
+}
+
+.last-line {
+    margin-bottom: 30px;
+}
+
+.last-line-left {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-dark);
+}
+
+.last-line-right {
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--color-dark);
+    white-space: nowrap;
+}
+
+.cart__form-input {
+    min-width: 100%;
+    border: 1px solid #c5c5c5;
+    margin-bottom: 30px;
 }

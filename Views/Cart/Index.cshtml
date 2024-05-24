@@ -7,8 +7,8 @@
 <div class="cart">
     <div class="cart__content">
         <div class="flex mb-4">
-            <a class="product__page-start product__page-link pr-1" asp-area="" asp-controller="Home" asp-action="Index">Главная /</a>
-            <a class="product__page-start product__page-link pr-1" asp-area="" asp-controller="Product" asp-action="Catalog">Каталог /</a>
+            <a class="product__page-start pr-1" asp-area="" asp-controller="Home" asp-action="Index">Главная /</a>
+            <a class="product__page-start pr-1" asp-area="" asp-controller="Product" asp-action="Catalog">Каталог /</a>
             <a class="product__page-product" asp-area="" asp-controller="Cart" asp-action="Index">Корзина</a>
         </div>
         <div class="row">
@@ -17,10 +17,10 @@
                     <h2 class="product__title mb-4">Информация о клиенте</h2>
                     <p class="cart__text-main">Ваше имя</p>
                     <p class="cart__left-text">Имя получателя заказа</p>
-                    <input class="input-reset" id="name" type="text" name="name" placeholder="Ваше имя" required>
+                    <input class="input-reset mb-4" id="name" type="text" name="name" placeholder="Ваше имя" required>
                     <p class="cart__text-main">E-mail</p>
                     <p class="cart__left-text">Для отправки деталей заказа, статуса производства и доставки</p>
-                    <input class="input-reset" id="email" type="email" name="email" placeholder="Введите e-mail" required>
+                    <input class="input-reset mb-4" id="email" type="email" name="email" placeholder="Введите e-mail" required>
                     <p class="cart__text-main">Телефон</p>
                     <p class="cart__left-text">Чтобы мы могли связаться для уточнения деталей доставки или заказанного товара</p>
                     <input class="input-reset" id="phone" type="tel" name="phone" placeholder="Введите телефон" required>
@@ -116,7 +116,7 @@
                 }
                 else
                 {
-                    <table class="table">
+                    <table class="table cart__table">
                         <thead>
                             <tr>
                                 <th>Фото</th>
@@ -132,37 +132,128 @@
                             {
                                 <tr>
                                     <td>
-                                        <img style="max-width: 68px" src="@item.Product.ImgList.FirstOrDefault().Path" />
+                                        <img class="cart__table-img" src="@item.Product.ImgList.FirstOrDefault().Path" />
                                     </td>
                                     <td>
-                                        <div>
-                                            <p>@item.Product.Color</p>
-                                            <a href="/cart/deleteItem?productId=@item.Product.Id" role="button">Удалить товар</a>
+                                        <div class="cart__table-color">
+                                            <span class="cart__table-text">@item.Product.Color</span>
+                                            <a class="cart__table-del"
+                                               asp-area=""
+                                               asp-controller="Cart"
+                                               asp-action="DeleteItem"
+                                               asp-route-productId="@item.Product.Id"
+                                               role="button">
+                                                Удалить товар
+                                            </a>
                                         </div>
                                     </td>
-                                    <td>@item.Product.Size</td>
                                     <td>
-                                        <strong>@item.Product.Cost ₽</strong>
+                                        @item.Product.Size
                                     </td>
                                     <td>
-                                        <a href="/cart/decreaseAmount?productId=@item.Product.Id" role="button">&lt;</a>
-                                        @item.Amount
-                                        <a href="/cart/add?productId=@item.Product.Id" role="button">&gt;</a>
+                                        <span class="cart__table-main">@item.Product.Cost ₽</span>
                                     </td>
                                     <td>
-                                        <strong>@item.Cost ₽</strong>
+                                        <div class="cart__table-count">
+                                            <a class="cart__table-amounter"
+                                               asp-area=""
+                                               asp-controller="Cart"
+                                               asp-action="DecreaseAmount"
+                                               asp-route-productId="@item.Product.Id"
+                                               role="button">
+                                                <svg width="5" height="7" viewBox="0 0 5 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8.75933e-05 3.31158L4.84009 0L4.84009 6.62316L8.75933e-05 3.31158Z" fill="#565656" />
+                                                </svg>
+                                            </a>
+                                            <span class="cart__table-main cart__table-amount">@item.Amount</span>
+                                            <a class="cart__table-amounter"
+                                               asp-area=""
+                                               asp-controller="Cart"
+                                               asp-action="Add"
+                                               asp-route-productId="@item.Product.Id"
+                                               role="button">
+                                                <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M5.62735 3.31158L0.787354 0L0.787353 6.62316L5.62735 3.31158Z" fill="#565656" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="cart__table-sum">
+                                            <span class="cart__table-main">@item.Cost ₽</span>
+                                            <a class="btn btn-secondary hero-btn"
+                                               asp-area=""
+                                               asp-controller="Product"
+                                               asp-action="Index"
+                                               asp-route-id="@item.Product.Id"
+                                               role="button">
+                                                В товар
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
-                    <div>
-                        <p>Количество @Model.ProductsCount</p>
-                        <p>Стоимость @Model.TotalCost ₽</p>
-                        <p>Скидка @ShopUser.UserSale ₽</p>
-                        <p>Доставка @ShopUser.UserDelivery ₽</p>
-                        <h3>ИТОГО @Model.FullCost ₽</h3>
+                    <div class="total-line">
+                        <span class="total-line-left">Количество</span>
+                        <div class="total-line-center">
+                            <span class="total-line-dotted">
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            </span>
+                        </div>
+                        <span class="total-line-right">@Model.ProductsCount</span>
                     </div>
+                    <div class="total-line">
+                        <span class="total-line-left">Стоимость</span>
+                        <div class="total-line-center">
+                            <span class="total-line-dotted">
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            </span>
+                        </div>
+                        <span class="total-line-right">@Model.TotalCost ₽</span>
+                    </div>
+                    <div class="total-line">
+                        <span class="total-line-left text-red">Скидка</span>
+                        <div class="total-line-center">
+                            <span class="total-line-dotted">
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            </span>
+                        </div>
+                        <span class="total-line-right text-red">@ShopUser.UserSale ₽</span>
+                    </div>
+                    <div class="total-line">
+                        <span class="total-line-left">Доставка</span>
+                        <div class="total-line-center">
+                            <span class="total-line-dotted">
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            </span>
+                        </div>
+                        <span class="total-line-right">@ShopUser.UserDelivery ₽</span>
+                    </div>
+                    <div class="total-line last-line">
+                        <span class="last-line-left">Итого</span>
+                        <div class="total-line-center">
+                            <span class="total-line-dotted">
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            </span>
+                        </div>
+                        <span class="last-line-right">@Model.FullCost ₽</span>
+                    </div>
+                    <form class="sale__form" id="request" method="post">
+                        <input class="sale__form-input cart__form-input" type="text" name="text" placeholder="Введите промокод">
+                        <button class="btn btn-secondary sale__form-btn">Применить</button>
+                    </form>
                 }
             </div>
         </div>
