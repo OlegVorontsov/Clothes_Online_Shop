@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clothes_Online_Shop.DB;
+using System;
 using System.Collections.Generic;
 
 namespace Clothes_Online_Shop.Models

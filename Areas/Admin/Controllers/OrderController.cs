@@ -1,15 +1,18 @@
 ﻿using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.DB;
 using Clothes_Online_Shop.DB.Data;
 using Clothes_Online_Shop.DB.Models;
 using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 
 namespace Clothes_Online_Shop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(ShopUser.AdminRoleName)]
+    [Authorize(Roles = ShopUser.AdminRoleName)]
     public class OrderController : Controller
     {
         private readonly IOrdersRepository ordersRepository;

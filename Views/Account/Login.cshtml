@@ -8,6 +8,7 @@
     <div class="col-4">
         <h4 class="text-center">Вход</h4>
         <form id="request" method="post">
+            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl"/>
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
             <div class="flex justify-content-between">
                 <label asp-for="Email">Введите ваш e-mail</label>
@@ -21,7 +22,7 @@
             </div>
             <div class="text-center">
                 <label style="margin-bottom: 1rem">
-                    <input type="checkbox" name="rememberMe">
+                    <input type="checkbox" name="rememberMe" value="true">
                     <span>Запомнить меня?</span>
                 </label>
             </div>
@@ -33,8 +34,10 @@
         </form>
         <div class="text-center mb-2">
             <a class="link-reset"
+               asp-area=""
                asp-controller="Account"
-               asp-action="Register">Регистрация
+               asp-action="Register"
+               asp-route-ReturnUrl="@Model.ReturnUrl">Регистрация
             </a>
         </div>
     </div>

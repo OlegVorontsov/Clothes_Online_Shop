@@ -114,5 +114,13 @@ namespace Clothes_Online_Shop.Helpers
                 Phone = userInfo.Phone
             };
         }
+        public static UserViewModel ToUserViewModel(this User user)
+        {
+            return new UserViewModel
+            {
+                Name = user.UserName,
+                Phone = user.PhoneNumber
+            };
+        }
     }
 }

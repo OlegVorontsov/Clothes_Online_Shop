@@ -1,14 +1,16 @@
-﻿using Clothes_Online_Shop.DB.Data;
-using Clothes_Online_Shop.DB.Models;
+﻿using Clothes_Online_Shop.DB;
+using Clothes_Online_Shop.DB.Data;
 using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
 namespace Clothes_Online_Shop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(ShopUser.AdminRoleName)]
+    [Authorize(Roles = ShopUser.AdminRoleName)]
     public class ProductController : Controller
     {
         private readonly IProductsRepository productsRepository;

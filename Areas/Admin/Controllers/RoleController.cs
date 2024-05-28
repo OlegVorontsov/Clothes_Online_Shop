@@ -1,10 +1,13 @@
 ﻿using Clothes_Online_Shop.Areas.Admin.Models;
 using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.DB;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clothes_Online_Shop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(ShopUser.AdminRoleName)]
+    [Authorize(Roles = ShopUser.AdminRoleName)]
     public class RoleController : Controller
     {
         private readonly IRolesRepository rolesRepository;

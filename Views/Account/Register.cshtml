@@ -8,6 +8,7 @@
     <div class="col-4 mb-4">
         <h4 class="text-center">Регистрация</h4>
         <form id="request" method="post">
+            <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
             <div class="flex justify-content-between">
                 <label asp-for="Email">Введите ваш e-mail</label>
@@ -33,7 +34,8 @@
                     class="btn btn-secondary"
                     type="submit"
                     asp-controller="Account"
-                    asp-action="Register">ЗАРЕГИСТРИРОВАТЬСЯ
+                    asp-action="Register">
+                ЗАРЕГИСТРИРОВАТЬСЯ
             </button>
         </form>
     </div>

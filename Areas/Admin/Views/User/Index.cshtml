@@ -1,4 +1,4 @@
-﻿@model List<UserAccount>
+﻿@model List<UserViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th>Права</th>
-                        <th>Логин</th>
+                        <th>Почта</th>
                         <th>Телефон</th>
                         <th></th>
                     </tr>
@@ -27,8 +27,8 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Role.Name</td>
-                            <td>@item.Name</td>
+                            <td>права</td>
+                            <td>@item.Email</td>
                             <td>@item.Phone</td>
                             <td>
                                 <button class="btn btn-secondary"

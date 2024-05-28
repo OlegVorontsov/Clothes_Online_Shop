@@ -1,25 +1,30 @@
 ﻿using Clothes_Online_Shop.Areas.Admin.Models;
-using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.DB;
+using Clothes_Online_Shop.DB.Models;
+using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Clothes_Online_Shop.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(ShopUser.AdminRoleName)]
+    [Authorize(Roles = ShopUser.AdminRoleName)]
     public class UserController : Controller
     {
-        private readonly IUsersManager usersManager;
-        private readonly IRolesRepository rolesRepository;
+        private readonly UserManager<User> usersManager;
 
-        public UserController(IUsersManager usersManager, IRolesRepository rolesRepository)
+        public UserController(UserManager<User> usersManager)
         {
             this.usersManager = usersManager;
-            this.rolesRepository = rolesRepository;
         }
 
         public IActionResult Index()
         {
-            return View(usersManager.GetAll());
+            var users = usersManager.Users.ToList();
+            return View(users.Select(u => u.ToUserViewModel()).ToList());
         }
         public IActionResult ChangePassword(string userName)
         {
@@ -38,36 +43,13 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             }
             if (ModelState.IsValid)
             {
-                usersManager.ChangePassword(changePassword.UserName, changePassword.Password);
+                var user = usersManager.FindByNameAsync(changePassword.UserName).Result;
+                var newHashPassword = usersManager.PasswordHasher.HashPassword(user, changePassword.Password);
+                user.PasswordHash = newHashPassword;
+                usersManager.UpdateAsync(user).Wait();
                 return RedirectToAction(nameof(Index));
             }
             return RedirectToAction(nameof(ChangePassword));
-        }
-        public IActionResult ChangeRole(string userName)
-        {
-            var changeRole = new ChangeRole()
-            {
-                UserName = userName
-            };
-            return View(changeRole);
-        }
-        [HttpPost]
-        public IActionResult ChangeRole(ChangeRole changeRole)
-        {
-            if (ModelState.IsValid)
-            {
-                var roleExists = rolesRepository.TryGetByName(changeRole.RoleName);
-                if (roleExists != null)
-                {
-                    usersManager.ChangeRole(changeRole.UserName, roleExists);
-                    return RedirectToAction(nameof(Index));
-                }
-                var roleToAdd = new Role() { Name = changeRole.RoleName };
-                rolesRepository.AddRole(roleToAdd);
-                usersManager.ChangeRole(changeRole.UserName, roleToAdd);
-                return RedirectToAction(nameof(Index));
-            }
-            return RedirectToAction(nameof(ChangeRole));
         }
         public IActionResult Edit(string userName)
         {
@@ -82,14 +64,18 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                usersManager.Update(changeUser);
+                var user = usersManager.FindByNameAsync(changeUser.UserName).Result;
+                user.Email = changeUser.Email;
+                user.PhoneNumber = changeUser.Phone;
+                usersManager.UpdateAsync(user).Wait();
                 return RedirectToAction(nameof(Index));
             }
             return RedirectToAction(nameof(Edit));
         }
         public IActionResult Remove(string userName)
         {
-            usersManager.Remove(userName);
+            var user = usersManager.FindByNameAsync(userName).Result;
+            usersManager.DeleteAsync(user).Wait();
             return RedirectToAction(nameof(Index));
         }
     }

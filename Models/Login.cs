@@ -11,5 +11,6 @@ namespace Clothes_Online_Shop.Models
         [Required(ErrorMessage = "пароль*")]
         public string Password { get; set; }
         public bool RememberMe { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }

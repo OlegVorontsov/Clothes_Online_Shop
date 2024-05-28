@@ -1,13 +1,17 @@
 using Clothes_Online_Shop.Data;
 using Clothes_Online_Shop.DB;
 using Clothes_Online_Shop.DB.Data;
+using Clothes_Online_Shop.DB.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using System;
 using System.Globalization;
 
 namespace Clothes_Online_Shop
@@ -26,13 +30,26 @@ namespace Clothes_Online_Shop
             services.AddDbContext<DataBaseContext>(options => options.UseSqlServer(
             Configuration.GetConnectionString("online_shop")));
 
+            services.AddDbContext<IdentityContext>(options => options.UseSqlServer(
+            Configuration.GetConnectionString("online_shop")));
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromHours(8);
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.Cookie = new CookieBuilder
+                {
+                    IsEssential = true
+                };
+            });
+
             services.AddTransient<IProductsRepository, ProductsDBRepository>();
             services.AddTransient<IImgInfosDBRepository, ImgInfosDBRepository>();
             services.AddTransient<ICartsRepository, CartsDBRepository>();
             services.AddTransient<IFavoriteProductRepository, FavoriteProductDBRepository>();
             services.AddTransient<IOrdersRepository, OrdersDBRepository>();
             services.AddSingleton<IRolesRepository, RolesInMemoryRepository>();
-            services.AddSingleton<IUsersManager, UsersManager>();
             services.AddControllersWithViews();
 
             services.Configure<RequestLocalizationOptions>(options =>
@@ -53,6 +70,8 @@ namespace Clothes_Online_Shop
             app.UseSerilogRequestLogging();
             app.UseStaticFiles();
             app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseRequestLocalization();
             app.UseEndpoints(endpoints =>
             {

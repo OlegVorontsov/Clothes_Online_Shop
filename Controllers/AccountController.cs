@@ -1,69 +1,77 @@
 ﻿using Clothes_Online_Shop.Data;
+using Clothes_Online_Shop.DB.Models;
 using Clothes_Online_Shop.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clothes_Online_Shop.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUsersManager usersManager;
-        private readonly IRolesRepository rolesRepository;
+        private readonly UserManager<User> _userManager;
+        private readonly SignInManager<User> _signInManager;
 
-        public AccountController(IUsersManager usersManager, IRolesRepository rolesRepository)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
         {
-            this.usersManager = usersManager;
-            this.rolesRepository = rolesRepository;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl)
         {
-            return View();
+            return View(new Login { ReturnUrl = returnUrl });
         }
         [HttpPost]
-        public IActionResult Login(Login loginInfo)
+        public IActionResult Login(Login login)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Login));
+                var result = _signInManager.PasswordSignInAsync(login.Email, login.Password, login.RememberMe, false).Result;
+                if (result.Succeeded)
+                {
+                    return Redirect(login.ReturnUrl);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Неверный логин или пароль");
+                }
             }
-            if (loginInfo.Email == loginInfo.Password)
-            {
-                ModelState.AddModelError("", "e-mail и пароль не должны совпадать");
-            }
-            var userAccount = usersManager.TryGetByName(loginInfo.Email);
-            if (userAccount == null)
-            {
-                ModelState.AddModelError("", $"Пользователь {loginInfo.Email} не найден");
-            }
-            if (userAccount.Password != loginInfo.Password)
-            {
-                ModelState.AddModelError("", $"Неверный пароль");
-            }
-            return RedirectToAction(nameof(HomeController.Index), "Home");
+            return View(login);
         }
-        public IActionResult Register()
+        public IActionResult Register(string ReturnUrl)
         {
-            return View();
+            return View(new Register() { ReturnUrl = ReturnUrl });
         }
         [HttpPost]
-        public IActionResult Register(Register registerInfo)
+        public IActionResult Register(Register register)
         {
-            if (registerInfo.Email == registerInfo.Password)
+            if (register.Email == register.Password)
             {
                 ModelState.AddModelError("", "e-mail и пароль не должны совпадать");
             }
             if (ModelState.IsValid)
             {
-                usersManager.AddUser(new UserAccount
+                User user = new User { Email = register.Email, UserName = register.Email,  PhoneNumber = register.Phone };
+                var result = _userManager.CreateAsync(user, register.Password).Result;
+                if (result.Succeeded)
                 {
-                    Name = registerInfo.Email,
-                    Phone = registerInfo.Phone,
-                    Password = registerInfo.Password,
-                    Role = rolesRepository.GetUserRole()
-                });
-                return RedirectToAction(nameof(HomeController.Index), "Home");
+                    _signInManager.SignInAsync(user, false).Wait();
+                    return Redirect(register.ReturnUrl ?? "/Home");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                }
             }
-            return RedirectToAction(nameof(Register));
+            return View(register);
+        }
+        public IActionResult Logout()
+        {
+            _signInManager.SignOutAsync().Wait();
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
     }
 }

@@ -1,12 +1,14 @@
-﻿using Clothes_Online_Shop.Data;
+﻿using Clothes_Online_Shop.DB;
 using Clothes_Online_Shop.DB.Data;
 using Clothes_Online_Shop.DB.Models;
 using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Clothes_Online_Shop.Controllers
 {
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly ICartsRepository cartsRepository;
