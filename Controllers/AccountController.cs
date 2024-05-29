@@ -1,4 +1,4 @@
-﻿using Clothes_Online_Shop.Data;
+﻿using Clothes_Online_Shop.DB;
 using Clothes_Online_Shop.DB.Models;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Identity;
@@ -56,6 +56,7 @@ namespace Clothes_Online_Shop.Controllers
                 if (result.Succeeded)
                 {
                     _signInManager.SignInAsync(user, false).Wait();
+                    TryAssignUserRole(user);
                     return Redirect(register.ReturnUrl ?? "/Home");
                 }
                 else
@@ -67,6 +68,17 @@ namespace Clothes_Online_Shop.Controllers
                 }
             }
             return View(register);
+        }
+        private void TryAssignUserRole(User user)
+        {
+            try
+            {
+                _userManager.AddToRoleAsync(user, ShopUser.UserRoleName).Wait();
+            }
+            catch
+            {
+                //log
+            }
         }
         public IActionResult Logout()
         {

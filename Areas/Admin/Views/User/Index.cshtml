@@ -27,7 +27,12 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>права</td>
+                            <td>
+                                @foreach (var role in item.Roles)
+                                {
+                                    <p class="table-main">@role.Name</p>;
+                                }
+                            </td>
                             <td>@item.Email</td>
                             <td>@item.Phone</td>
                             <td>

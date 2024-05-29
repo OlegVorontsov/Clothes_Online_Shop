@@ -1,8 +1,9 @@
 ﻿using Clothes_Online_Shop.Areas.Admin.Models;
-using Clothes_Online_Shop.Data;
 using Clothes_Online_Shop.DB;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Clothes_Online_Shop.Areas.Admin.Controllers
 {
@@ -10,20 +11,23 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
     [Authorize(Roles = ShopUser.AdminRoleName)]
     public class RoleController : Controller
     {
-        private readonly IRolesRepository rolesRepository;
-
-        public RoleController(IRolesRepository rolesRepository)
+        private readonly RoleManager<IdentityRole> rolesManager;
+        public RoleController(RoleManager<IdentityRole> rolesManager)
         {
-            this.rolesRepository = rolesRepository;
+            this.rolesManager = rolesManager;
         }
-
         public IActionResult Index()
         {
-            return View(rolesRepository.GetAll());
+            var roles = rolesManager.Roles.ToList();
+            return View(roles.Select(r => new RoleViewModel { Name = r.Name}).ToList());
         }
         public IActionResult Remove(string roleName)
         {
-            rolesRepository.Remove(roleName);
+            var role = rolesManager.FindByNameAsync(roleName).Result;
+            if (role != null)
+            {
+                rolesManager.DeleteAsync(role).Wait();
+            }
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Add()
@@ -31,16 +35,19 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Add(Role role)
+        public IActionResult Add(RoleViewModel role)
         {
-            if (rolesRepository.TryGetByName(role.Name) != null)
+            var result = rolesManager.CreateAsync(new IdentityRole(role.Name)).Result;
+            if (result.Succeeded)
             {
-                ModelState.AddModelError("", $"{role.Name} уже есть!");
-            }
-            if (ModelState.IsValid)
-            {
-                rolesRepository.AddRole(role);
                 return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
             }
             return View(role);
         }

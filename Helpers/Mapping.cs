@@ -1,7 +1,6 @@
 ﻿using Clothes_Online_Shop.DB.Data;
 using Clothes_Online_Shop.DB.Models;
 using Clothes_Online_Shop.Models;
-using System;
 using System.Collections.Generic;
 
 namespace Clothes_Online_Shop.Helpers
@@ -119,6 +118,7 @@ namespace Clothes_Online_Shop.Helpers
             return new UserViewModel
             {
                 Name = user.UserName,
+                Roles = user.Roles,
                 Email = user.Email,
                 Phone = user.PhoneNumber
             };

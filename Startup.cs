@@ -1,4 +1,3 @@
-using Clothes_Online_Shop.Data;
 using Clothes_Online_Shop.DB;
 using Clothes_Online_Shop.DB.Data;
 using Clothes_Online_Shop.DB.Models;
@@ -49,7 +48,6 @@ namespace Clothes_Online_Shop
             services.AddTransient<ICartsRepository, CartsDBRepository>();
             services.AddTransient<IFavoriteProductRepository, FavoriteProductDBRepository>();
             services.AddTransient<IOrdersRepository, OrdersDBRepository>();
-            services.AddSingleton<IRolesRepository, RolesInMemoryRepository>();
             services.AddControllersWithViews();
 
             services.Configure<RequestLocalizationOptions>(options =>

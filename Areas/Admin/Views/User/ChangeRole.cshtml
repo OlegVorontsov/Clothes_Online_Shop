@@ -1,4 +1,4 @@
-﻿@model ChangeRole
+﻿@model ChangeRoleViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,14 +7,25 @@
 <div class="row justify-content-center">
     <div class="col-4">
         <h4 class="text-center">Изменение прав у пользователя @Model.UserName</h4>
-        <form id="request" method="post">
-            <div class="text-danger" asp-validation-summary="All"></div>
-            <input type="hidden" name="userName" value="@Model.UserName"/>
-            <div class="flex justify-content-between">
-                <label asp-for="RoleName">Введите название прав</label>
-                <span class="text-danger" asp-validation-for="RoleName"></span>
-                <input class="input-reset" asp-for="RoleName" value="@Model.RoleName" placeholder="название прав*" />
-            </div>
+        <form method="post">
+            <input type="hidden" name="userName" value="@Model.UserName">
+            @foreach (var role in Model.AllRoles)
+            {
+                if (Model.Roles.Contains(role))
+                {
+                    <label class="modal-checkbox pr-4">
+                        <input class="modal-checkbox-input" name="userRolesViewModel[@role.Name]" type="checkbox" value="true" checked>
+                        <span class="modal-checkbox-text">@role.Name</span>
+                    </label>
+                }
+                else
+                {
+                    <label class="modal-checkbox pr-4">
+                        <input class="modal-checkbox-input" name="userRolesViewModel[@role.Name]" type="checkbox" value="true">
+                        <span class="modal-checkbox-text">@role.Name</span>
+                    </label>
+                }
+            }
             <button style="min-width:100%"
                     class="btn btn-secondary mb-4"
                     type="submit"
