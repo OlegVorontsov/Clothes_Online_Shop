@@ -119,6 +119,7 @@ namespace Clothes_Online_Shop.Helpers
             return new UserViewModel
             {
                 Name = user.UserName,
+                Email = user.Email,
                 Phone = user.PhoneNumber
             };
         }
