@@ -138,7 +138,7 @@
                         <li class="splide__slide">
                             <div class="popular__splide-card">
                                 <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">
-                                    <img class="popular__splide-img" src="@product.ImgList.FirstOrDefault().Path" />
+                                    <img class="popular__splide-img" src="@product.ImgList.FirstOrDefault().Url" />
                                 </a>
                                 @if (product.Like)
                                 {

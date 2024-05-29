@@ -26,7 +26,7 @@
                             </svg>
                         </a>
                         <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@product.Id">
-                            <img class="card-img-top catalog__card-img" src="@product.ImgList.FirstOrDefault().Path" />
+                            <img class="card-img-top catalog__card-img" src="@product.ImgList.FirstOrDefault().Url" />
                         </a>
                         <div class="catalog__card-price">
                             <span class="catalog__card-cost">@product.Cost ₽</span>
