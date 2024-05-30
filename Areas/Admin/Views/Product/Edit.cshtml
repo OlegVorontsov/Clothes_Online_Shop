@@ -1,4 +1,4 @@
-﻿@model ProductViewModel
+﻿@model EditProductViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,9 +7,10 @@
 <div class="row justify-content-center">
     <div class="col-4">
         <h4 class="text-center">Редактирование продукта</h4>
-        <form id="request" method="post">
+        <form id="request" method="post" enctype="multipart/form-data">
             <div class="text-danger" asp-validation-summary="All"></div>
-            <input type="hidden" name="Id" value="@Model.Id"/>
+            <input type="hidden" name="Id" value="@Model.Id" />
+            <input type="hidden" asp-for="@Model.ImagesPaths" value="@Model.ImagesPaths" />
             <div class="flex justify-content-between">
                 <label asp-for="Name">Введите название</label>
                 <span class="text-danger" asp-validation-for="Name"></span>
@@ -60,12 +61,25 @@
                 <span class="text-danger" asp-validation-for="Description"></span>
                 <input class="input-reset" asp-for="Description" value="@Model.Description" placeholder="описание*" />
             </div>
+            <p>Текущие изображения</p>
+            <div class="flex">
+                @foreach (var img in Model.ImagesPaths)
+                {
+                    <img class="card-img-top catalog__card-img mr-4" style="width: 100px" src="@img" />
+                }
+            </div>
+            <div class="flex justify-content-between">
+                <label asp-for="UploadedFiles">Добавить изображения:</label>
+                <span class="text-danger" asp-validation-for="UploadedFiles"></span>
+                <input class="input-reset" asp-for="UploadedFiles" type="file" multiple accept="img/*" />
+            </div>
             <button style="min-width:100%"
                     class="btn btn-secondary mb-4"
                     type="submit"
                     asp-area="Admin"
                     asp-controller="Product"
-                    asp-action="Edit">Сохранить
+                    asp-action="Edit">
+                Сохранить
             </button>
         </form>
     </div>

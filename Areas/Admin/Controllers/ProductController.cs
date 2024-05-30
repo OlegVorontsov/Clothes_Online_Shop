@@ -38,8 +38,8 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             {
                 return View(product);
             }
-            var imagePath = ImagesProvider.SafeFiles(product.UploadedFiles, ImageFolders.Products);
-            productsRepository.AddProduct(product.ToProduct(imagePath));
+            var imagePaths = ImagesProvider.SafeFiles(product.UploadedFiles, ImageFolders.Products);
+            productsRepository.AddProduct(product.ToProduct(imagePaths));
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Edit(Guid productId)
@@ -49,15 +49,17 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            return View(productDB.ToProductViewModel());
+            return View(productDB.ToEditProductViewModel());
         }
         [HttpPost]
-        public IActionResult Edit(ProductViewModel product)
+        public IActionResult Edit(EditProductViewModel product)
         {
             if (!ModelState.IsValid)
             {
                 return View(product);
             }
+            var addedImagePaths = ImagesProvider.SafeFiles(product.UploadedFiles, ImageFolders.Products);
+            product.ImagesPaths = addedImagePaths;
             productsRepository.Update(product.ToProduct());
             return RedirectToAction(nameof(Index));
         }

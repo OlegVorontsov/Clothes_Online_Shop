@@ -55,7 +55,7 @@ namespace Clothes_Online_Shop.Helpers
                 Like = productViewModel.Like
             };
         }
-        public static Product ToProduct(this AddProductViewModel addProductViewModel, List<string> imagePath)
+        public static Product ToProduct(this AddProductViewModel addProductViewModel, List<string> imagePaths)
         {
             return new Product
             {
@@ -69,12 +69,52 @@ namespace Clothes_Online_Shop.Helpers
                 Brand = addProductViewModel.Brand,
                 Country = addProductViewModel.Country,
                 Description = addProductViewModel.Description,
-                ImgList = ToImages(imagePath)
+                ImgList = imagePaths.ToImages()
+            };
+        }
+        public static EditProductViewModel ToEditProductViewModel(this Product product)
+        {
+            return new EditProductViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Item = product.Item,
+                Cost = product.Cost,
+                Size = product.Size,
+                Color = product.Color,
+                Care = product.Care,
+                Fabric = product.Fabric,
+                Brand = product.Brand,
+                Country = product.Country,
+                Description = product.Description,
+                ImagesPaths = product.ImgList.ToPaths()
+            };
+        }
+        public static Product ToProduct(this EditProductViewModel editProductViewModel)
+        {
+            return new Product
+            {
+                Id = editProductViewModel.Id,
+                Name = editProductViewModel.Name,
+                Item = editProductViewModel.Item,
+                Cost = editProductViewModel.Cost,
+                Size = editProductViewModel.Size,
+                Color = editProductViewModel.Color,
+                Care = editProductViewModel.Care,
+                Fabric = editProductViewModel.Fabric,
+                Brand = editProductViewModel.Brand,
+                Country = editProductViewModel.Country,
+                Description = editProductViewModel.Description,
+                ImgList = editProductViewModel.ImagesPaths.ToImages()
             };
         }
         public static List<ImgInfo> ToImages(this List<string> paths)
         {
             return paths.Select(x => new ImgInfo { Url = x }).ToList();
+        }
+        public static List<string> ToPaths(this ICollection<ImgInfo> images)
+        {
+            return images.Select(x => x.Url).ToList();
         }
 
         public static UserDeliveryInfo ToUser(this UserDeliveryInfoViewModel userInfo)
