@@ -14,53 +14,32 @@ namespace Clothes_Online_Shop.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IProductsRepository productsRepository;
-        private readonly IImgInfosDBRepository imgInfosRepository;
+        private readonly ImagesProvider ImagesProvider;
 
-        public ProductController(IProductsRepository productsRepository, IImgInfosDBRepository imgInfosRepository)
+        public ProductController(IProductsRepository productsRepository, ImagesProvider imgInfosRepository)
         {
             this.productsRepository = productsRepository;
-            this.imgInfosRepository = imgInfosRepository;
+            this.ImagesProvider = imgInfosRepository;
         }
 
         public IActionResult Index()
         {
             var productsDB = productsRepository.GetAll();
-            var products = new List<ProductViewModel>();
-            foreach (var productDB in productsDB)
-            {
-                var imgInfosDB = imgInfosRepository.GetAllByProductId(productDB.Id);
-                var product = new ProductViewModel
-                {
-                    Id = productDB.Id,
-                    Name = productDB.Name,
-                    Item = productDB.Item,
-                    Cost = productDB.Cost,
-                    Size = productDB.Size,
-                    Color = productDB.Color,
-                    Care = productDB.Care,
-                    Fabric = productDB.Fabric,
-                    Brand = productDB.Brand,
-                    Country = productDB.Country,
-                    Description = productDB.Description,
-                    ImgList = imgInfosDB,
-                    Like = productDB.Like
-                };
-                products.Add(product);
-            }
-            return View(products);
+            return View(productsDB.ToProductViewModels());
         }
         public IActionResult Add()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Add(ProductViewModel product)
+        public IActionResult Add(AddProductViewModel product)
         {
             if (!ModelState.IsValid)
             {
                 return View(product);
             }
-            productsRepository.AddProduct(product.ToProduct());
+            var imagePath = ImagesProvider.SafeFiles(product.UploadedFiles, ImageFolders.Products);
+            productsRepository.AddProduct(product.ToProduct(imagePath));
             return RedirectToAction(nameof(Index));
         }
         public IActionResult Edit(Guid productId)

@@ -2,6 +2,7 @@
 using Clothes_Online_Shop.DB.Models;
 using Clothes_Online_Shop.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Clothes_Online_Shop.Helpers
 {
@@ -53,6 +54,27 @@ namespace Clothes_Online_Shop.Helpers
                 ImgList = productViewModel.ImgList,
                 Like = productViewModel.Like
             };
+        }
+        public static Product ToProduct(this AddProductViewModel addProductViewModel, List<string> imagePath)
+        {
+            return new Product
+            {
+                Name = addProductViewModel.Name,
+                Item = addProductViewModel.Item,
+                Cost = addProductViewModel.Cost,
+                Size = addProductViewModel.Size,
+                Color = addProductViewModel.Color,
+                Care = addProductViewModel.Care,
+                Fabric = addProductViewModel.Fabric,
+                Brand = addProductViewModel.Brand,
+                Country = addProductViewModel.Country,
+                Description = addProductViewModel.Description,
+                ImgList = ToImages(imagePath)
+            };
+        }
+        public static List<ImgInfo> ToImages(this List<string> paths)
+        {
+            return paths.Select(x => new ImgInfo { Url = x }).ToList();
         }
 
         public static UserDeliveryInfo ToUser(this UserDeliveryInfoViewModel userInfo)

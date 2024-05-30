@@ -1,4 +1,5 @@
 ﻿using Clothes_Online_Shop.DB.Data;
+using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -9,39 +10,15 @@ namespace Clothes_Online_Shop.Controllers
     public class HomeController : Controller
     {
         private readonly IProductsRepository productsRepository;
-        private readonly IImgInfosDBRepository imgInfosRepository;
 
-        public HomeController(IProductsRepository productsRepository, IImgInfosDBRepository imgInfosRepository)
+        public HomeController(IProductsRepository productsRepository)
         {
             this.productsRepository = productsRepository;
-            this.imgInfosRepository = imgInfosRepository;
         }
         public IActionResult Index()
         {
             var productsDB = productsRepository.GetAll();
-            var products = new List<ProductViewModel>();
-            foreach (var productDB in productsDB)
-            {
-                var imgInfosDB = imgInfosRepository.GetAllByProductId(productDB.Id);
-                var product = new ProductViewModel
-                {
-                    Id = productDB.Id,
-                    Name = productDB.Name,
-                    Item = productDB.Item,
-                    Cost = productDB.Cost,
-                    Size = productDB.Size,
-                    Color = productDB.Color,
-                    Care = productDB.Care,
-                    Fabric = productDB.Fabric,
-                    Brand = productDB.Brand,
-                    Country = productDB.Country,
-                    Description = productDB.Description,
-                    ImgList = imgInfosDB,
-                    Like = productDB.Like
-                };
-                products.Add(product);
-            }
-            return View(products);
+            return View(productsDB.ToProductViewModels());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

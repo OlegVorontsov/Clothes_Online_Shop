@@ -44,7 +44,7 @@ namespace Clothes_Online_Shop
             });
 
             services.AddTransient<IProductsRepository, ProductsDBRepository>();
-            services.AddTransient<IImgInfosDBRepository, ImgInfosDBRepository>();
+            services.AddTransient<ImagesProvider>();
             services.AddTransient<ICartsRepository, CartsDBRepository>();
             services.AddTransient<IFavoriteProductRepository, FavoriteProductDBRepository>();
             services.AddTransient<IOrdersRepository, OrdersDBRepository>();

@@ -1,4 +1,4 @@
-﻿@model ProductViewModel
+﻿@model AddProductViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -7,7 +7,7 @@
 <div class="row justify-content-center">
     <div class="col-4">
         <h4 class="text-center">Добавление товара</h4>
-        <form id="request" method="post">
+        <form id="request" method="post" enctype="multipart/form-data">
             <div class="text-danger" asp-validation-summary="All"></div>
             <div class="flex justify-content-between">
                 <label asp-for="Name">Введите название</label>
@@ -58,6 +58,11 @@
                 <label asp-for="Description">Введите описание</label>
                 <span class="text-danger" asp-validation-for="Description"></span>
                 <input class="input-reset" asp-for="Description" placeholder="описание*" />
+            </div>
+            <div class="flex justify-content-between">
+                <label asp-for="UploadedFiles">Загрузить изображение:</label>
+                <span class="text-danger" asp-validation-for="UploadedFiles"></span>
+                <input class="input-reset" asp-for="UploadedFiles" type="file" multiple accept="img/*" />
             </div>
             <button style="min-width:100%"
                     class="btn btn-secondary mb-4"
