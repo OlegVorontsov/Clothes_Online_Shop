@@ -69,16 +69,25 @@
             </li>
             @if (User.Identity.IsAuthenticated)
             {
-                <li class="nav-item">
-                    <span class="link-reset">@User.Identity.Name</span>
-                </li>
-                <li class="nav-item">
-                    <a class="link-reset"
+            <li class="nav-item dropdown">
+                <a class="link-reset dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @User.Identity.Name
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item link-reset mb-2"
                        asp-area=""
                        asp-controller="Account"
-                       asp-action="Logout">Выйти
+                       asp-action="Index">
+                        Личный кабинет
                     </a>
-                </li>
+                    <a class="dropdown-item link-reset"
+                       asp-area=""
+                       asp-controller="Account"
+                       asp-action="Logout">
+                        Выйти
+                    </a>
+                </div>
+            </li>
             }
             @if (User.IsInRole(ShopUser.AdminRoleName))
             {
