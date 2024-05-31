@@ -1,0 +1,51 @@
+﻿@model OrderViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    @await Html.PartialAsync("UserLeft", Model.UserInfo.Email)
+    <div class="col-10">
+        <h4 style="padding-left: 0.75rem!important">Заказ @Model.Id</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Статус</th>
+                    <th>Получатель</th>
+                    <th>Дата</th>
+                    <th>Время</th>
+                    <th>Товары</th>
+                    <th>Сумма</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="vertical-align: top">@Model.Status</td>
+                    <td style="vertical-align: top">
+                        <p>@Model.UserInfo.Email</p>
+                        <p>@Model.UserInfo.Name</p>
+                        <p class="mb-0">@Model.UserInfo.Phone</p>
+                    </td>
+                    <td style="vertical-align: top">@Model.CreatedDateTime.ToShortDateString()</td>
+                    <td style="vertical-align: top">@Model.CreatedDateTime.ToShortTimeString()</td>
+                    <td style="vertical-align: top">
+                        @foreach (var item in Model.Items)
+                        {
+                        <div class="flex mb-2">
+                            <img class="cart__table-img mr-2" src="@item.Product.ImgList.FirstOrDefault().Url" />
+                            <div>
+                                <p>@item.Product.Name</p>
+                                <p>В заказе: @item.Amount шт.</p>
+                            </div>
+                        </div>
+                        }
+                    </td>
+                    <td style="vertical-align: top">
+                        <span class="table-main">@Model.TotalCost ₽</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

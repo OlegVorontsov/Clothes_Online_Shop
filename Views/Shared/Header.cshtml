@@ -67,28 +67,28 @@
             <li class="nav-item">
                 <a class="link-reset" href="#">Любимые бренды</a>
             </li>
-            @if (User.Identity.IsAuthenticated)
+            @if (User.Identity.IsAuthenticated && !User.IsInRole(ShopUser.AdminRoleName))
             {
-            <li class="nav-item dropdown">
-                <a class="link-reset dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    @User.Identity.Name
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item link-reset mb-2"
-                       asp-area=""
-                       asp-controller="Account"
-                       asp-action="Index"
-                       asp-route-userName="@User.Identity.Name">
-                        Личный кабинет
+                <li class="nav-item dropdown">
+                    <a class="link-reset dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        @User.Identity.Name
                     </a>
-                    <a class="dropdown-item link-reset"
-                       asp-area=""
-                       asp-controller="Account"
-                       asp-action="Logout">
-                        Выйти
-                    </a>
-                </div>
-            </li>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item link-reset mb-2"
+                           asp-area=""
+                           asp-controller="Account"
+                           asp-action="Index"
+                           asp-route-userName="@User.Identity.Name">
+                            Личный кабинет
+                        </a>
+                        <a class="dropdown-item link-reset"
+                           asp-area=""
+                           asp-controller="Account"
+                           asp-action="Logout">
+                            Выйти
+                        </a>
+                    </div>
+                </li>
             }
             @if (User.IsInRole(ShopUser.AdminRoleName))
             {
@@ -96,7 +96,8 @@
                     <a class="link-reset text-red"
                        asp-area="Admin"
                        asp-controller="Order"
-                       asp-action="Index">Адинистратор
+                       asp-action="Index">
+                        Адинистратор
                     </a>
                 </li>
             }

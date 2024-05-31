@@ -1,28 +1,29 @@
-﻿<div class="col-2">
+﻿@model string
+
+<div class="col-2">
     <div style="display:flex" class="flex-column mb-4">
         <a style="margin-bottom: 20px; margin-right: auto"
            class="link-reset"
-           asp-area="Admin"
-           asp-controller="Order"
-           asp-action="Index">Заказы
+           asp-area=""
+           asp-controller="Account"
+           asp-action="Index"
+           asp-route-userName="@Model">
+            Личные данные
         </a>
         <a style="margin-bottom: 20px; margin-right: auto"
            class="link-reset"
-           asp-area="Admin"
-           asp-controller="User"
-           asp-action="Index">Пользователи
+           asp-area=""
+           asp-controller="Account"
+           asp-action="Orders"
+           asp-route-userName="@Model">
+            Заказы
         </a>
         <a style="margin-bottom: 20px; margin-right: auto"
            class="link-reset"
-           asp-area="Admin"
-           asp-controller="Role"
-           asp-action="Index">Права
-        </a>
-        <a style="margin-bottom: 20px; margin-right: auto"
-           class="link-reset"
-           asp-area="Admin"
-           asp-controller="Product"
-           asp-action="Index">Товары
+           asp-area=""
+           asp-controller="Favorite"
+           asp-action="Index">
+            Избранное
         </a>
         <a style="margin-right: auto" class="link-reset text-red"
            asp-area=""

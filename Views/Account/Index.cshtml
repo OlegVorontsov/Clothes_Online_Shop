@@ -1,44 +1,33 @@
-﻿@model List<OrderViewModel>
+﻿@model UserViewModel
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="row">
-    @*@await Html.PartialAsync("AdminLeft")*@
-    <div class="col-10">
-        @if (Model == null || Model.Count == 0)
-        {
-            <h4 style="padding-left: 0.75rem!important">Заказов нет</h4>
-        }
-        else
-        {
-            <h4 style="padding-left: 0.75rem!important">Заказы</h4>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Номер</th>
-                        <th>Сумма</th>
-                        <th>Статус</th>
-                        <th>Дата</th>
-                        <th>Время</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @for (int i = 0; i < Model.Count; i++)
-                    {
-                        <tr>
-                            <td>@(i+1)</td>
-                            <td>
-                                <span class="table-main">@Model[i].TotalCost ₽</span>
-                            </td>
-                            <td>@EnumHelper.GetDisplayName(Model[i].Status)</td>
-                            <td>@Model[i].CreatedDateTime.ToShortDateString()</td>
-                            <td>@Model[i].CreatedDateTime.ToShortTimeString()</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        }
+    @await Html.PartialAsync("UserLeft", Model.Name)
+    <div class="col-4">
+        <h4>Личные данные</h4>
+        <form id="request" method="post">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <input type="hidden" name="Name" value="@Model.Name" />
+            <div class="flex justify-content-between">
+                <label asp-for="Email">E-mail</label>
+                <span asp-validation-for="Email"></span>
+                <input class="input-reset" style="min-width:100%" asp-for="Email" placeholder="e-mail*" />
+            </div>
+            <div class="flex justify-content-between">
+                <label asp-for="Phone">Телефон</label>
+                <span asp-validation-for="Phone"></span>
+                <input class="input-reset" style="min-width:100%" asp-for="Phone" placeholder="phone*" />
+            </div>
+            <button class="btn btn-secondary mb-4"
+                    type="submit"
+                    asp-area=""
+                    asp-controller="Account"
+                    asp-action="Edit">
+                Сохранить изменения
+            </button>
+        </form>
     </div>
 </div>

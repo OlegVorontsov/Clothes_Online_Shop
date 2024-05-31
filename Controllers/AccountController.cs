@@ -5,6 +5,7 @@ using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Linq;
 
 namespace Clothes_Online_Shop.Controllers
@@ -22,10 +23,27 @@ namespace Clothes_Online_Shop.Controllers
         }
         public IActionResult Index(string userName)
         {
+            var user = _userManager.FindByNameAsync(userName).Result;
+            return View(user.ToUserViewModel());
+        }
+
+        public IActionResult Edit(UserViewModel editUser)
+        {
+            var user = _userManager.FindByNameAsync(editUser.Name).Result;
+            _userManager.SetEmailAsync(user, editUser.Email).Wait();
+            _userManager.SetPhoneNumberAsync(user, editUser.Phone).Wait();
+            return RedirectToAction(nameof(Index), new { userName = user.UserName });
+        }
+        public IActionResult Orders(string userName)
+        {
             var orders = _ordersRepository.GetAllByUserName(userName);
             return View(orders.Select(x => x.ToOrderViewModel()).ToList());
         }
-
+        public IActionResult OrderDetails(Guid orderId)
+        {
+            var order = _ordersRepository.TryGetById(orderId);
+            return View(order.ToOrderViewModel());
+        }
         public IActionResult Login(string returnUrl)
         {
             return View(new Login { ReturnUrl = returnUrl });
