@@ -1,8 +1,11 @@
 ﻿using Clothes_Online_Shop.DB;
+using Clothes_Online_Shop.DB.Data;
 using Clothes_Online_Shop.DB.Models;
+using Clothes_Online_Shop.Helpers;
 using Clothes_Online_Shop.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace Clothes_Online_Shop.Controllers
 {
@@ -10,15 +13,17 @@ namespace Clothes_Online_Shop.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly IOrdersRepository _ordersRepository;
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IOrdersRepository ordersRepository)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _ordersRepository = ordersRepository;
         }
-        public IActionResult Index()
+        public IActionResult Index(string userName)
         {
-            return View();
+            var orders = _ordersRepository.GetAllByUserName(userName);
+            return View(orders.Select(x => x.ToOrderViewModel()).ToList());
         }
 
         public IActionResult Login(string returnUrl)
