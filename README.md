@@ -46,4 +46,24 @@
 ### Запуск приложения
 Для запуска приложения рекомендуется использовать Visual Studio 2019.
 
+## Home page
+
+![1](https://github.com/OlegVorontsov/Clothes_Online_Shop/assets/102809790/b8969332-4dd1-44ed-ad17-91b1d4d5c1c5)
+
+![2](https://github.com/OlegVorontsov/Clothes_Online_Shop/assets/102809790/959abec6-cf40-452b-856d-8e0f7678e23e)
+
+## Login page
+
+![3](https://github.com/OlegVorontsov/Clothes_Online_Shop/assets/102809790/7ddf6067-569c-4901-8e72-8014e053ab93)
+
+## Admin area
+
+![4](https://github.com/OlegVorontsov/Clothes_Online_Shop/assets/102809790/6ebe9081-79b0-4f19-8d3a-9fa3e9cdbe1b)
+
+## Cart page
+
+![cart](https://github.com/OlegVorontsov/Clothes_Online_Shop/assets/102809790/82915cc7-fc87-4da4-a52d-3538fb249404)
+
+
+
 
