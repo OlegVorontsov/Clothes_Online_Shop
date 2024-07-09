@@ -5,6 +5,7 @@
 Используемые технологии и библиотеки
 - ASP.NET CORE
 - шаблон Model-View-Controller (MVC)
+- макет Figma https://www.figma.com/design/l6HRdu1usScu4tFsS9yYsS/Интернет-магазин---Одежда-(Copy)?node-id=101-2&t=wkpufp6CXH8JpyJV-0
 - Razor pages
 - Bootstrap
 - HTML, CSS, JS
