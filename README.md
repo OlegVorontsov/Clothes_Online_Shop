@@ -44,13 +44,18 @@
 Чтобы облегчить процесс отладки, была использована библиотека Serilog.
 
 ### Запуск приложения
-Для запуска приложения рекомендуется использовать Visual Studio 2019.
+Для запуска приложения рекомендуется использовать Visual Studio 2019. Для работы приложения скачайте также БД https://github.com/OlegVorontsov/Clothes_Online_Shop.DB
 
 ## Home page
 
 ![1](https://github.com/OlegVorontsov/Clothes_Online_Shop/assets/102809790/b8969332-4dd1-44ed-ad17-91b1d4d5c1c5)
 
 ![2](https://github.com/OlegVorontsov/Clothes_Online_Shop/assets/102809790/959abec6-cf40-452b-856d-8e0f7678e23e)
+
+## Product page
+
+![Снимок](https://github.com/OlegVorontsov/Clothes_Online_Shop/assets/102809790/292829ca-7373-4fe4-8688-17303ded2924)
+
 
 ## Login page
 
